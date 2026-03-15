@@ -7,8 +7,6 @@
 
 A machine learning web application to predict silkworm disease occurrence based on climate and management parameters.
 
-![Silkworm Disease Predictor](docs/screenshot.png)
-
 ## Features
 
 - **Disease Prediction**: Predicts 4 major silkworm diseases:
