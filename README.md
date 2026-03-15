@@ -28,7 +28,7 @@ A machine learning web application to predict silkworm disease occurrence based 
 
 ## Live Demo
 
-**Website**: [https://silkworm-disease-predictor.github.io](https://silkworm-disease-predictor.github.io)
+**Website**: [https://chau-mau.github.io/silkworm-disease-predictor/](https://chau-mau.github.io/silkworm-disease-predictor/)
 
 ## Research Background
 
