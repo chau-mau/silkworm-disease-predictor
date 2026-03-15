@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}About - Silkworm Disease Predictor{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-10 mx-auto">
+        <div class="card">
+            <div class="card-body p-5">
+                <h2 class="mb-4"><i class="fas fa-info-circle me-2 text-primary"></i>About This Project</h2>
+                
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4 class="text-primary">Silkworm Disease Prediction System</h4>
+                        <p class="lead">
+                            This web application uses machine learning to predict the occurrence of silkworm diseases 
+                            based on climate parameters and management practices.
+                        </p>
+                        
+                        <h5 class="mt-4">Research Background</h5>
+                        <p>
+                            The study was conducted in <strong>Ranchi, Jharkhand, India</strong> (23.3441°N, 85.3096°E) 
+                            during October 2025. The research collected data from 8 different plots with varying 
+                            spacing configurations and instar stages.
+                        </p>
+                        
+                        <h5 class="mt-4">Diseases Monitored</h5>
+                        <ul>
+                            <li><strong>Pebrine</strong> - A microsporidian disease caused by <em>Nosema bombycis</em></li>
+                            <li><strong>Virosis</strong> - Viral infections affecting silkworms</li>
+                            <li><strong>Bacteriosis</strong> - Bacterial infections</li>
+                            <li><strong>Muscardine</strong> - Fungal disease caused by <em>Beauveria bassiana</em></li>
+                        </ul>
+                        
+                        <h5 class="mt-4">Key Features</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="feature-icon mx-auto">
+                                    <i class="fas fa-thermometer-half"></i>
+                                </div>
+                                <h6 class="text-center">Climate Data</h6>
+                                <p class="text-muted text-center small">Temperature, humidity, THI, wind speed</p>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-icon mx-auto">
+                                    <i class="fas fa-bug"></i>
+                                </div>
+                                <h6 class="text-center">Pest Monitoring</h6>
+                                <p class="text-muted text-center small">Uzi fly, mites, ants, spiders</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6 class="text-primary"><i class="fas fa-database me-2"></i>Dataset Statistics</h6>
+                                <ul class="list-unstyled mt-3">
+                                    <li class="mb-2">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        <strong>81</strong> Observations
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        <strong>8</strong> Plots
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        <strong>5</strong> Spacing Types
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        <strong>4</strong> Diseases
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        <strong>16</strong> Features
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="card bg-light mt-3">
+                            <div class="card-body">
+                                <h6 class="text-primary"><i class="fas fa-map-marker-alt me-2"></i>Location</h6>
+                                <p class="mb-0 mt-2">
+                                    <strong>Ranchi, Jharkhand</strong><br>
+                                    Latitude: 23.3441°N<br>
+                                    Longitude: 85.3096°E
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr class="my-5">
+                
+                <h4>How to Use</h4>
+                <div class="row mt-3">
+                    <div class="col-md-3 text-center mb-3">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <strong>1</strong>
+                        </div>
+                        <p class="mt-2 mb-0">Enter climate parameters</p>
+                    </div>
+                    <div class="col-md-3 text-center mb-3">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <strong>2</strong>
+                        </div>
+                        <p class="mt-2 mb-0">Select management options</p>
+                    </div>
+                    <div class="col-md-3 text-center mb-3">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <strong>3</strong>
+                        </div>
+                        <p class="mt-2 mb-0">Indicate pest presence</p>
+                    </div>
+                    <div class="col-md-3 text-center mb-3">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <strong>4</strong>
+                        </div>
+                        <p class="mt-2 mb-0">Get predictions</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="/" class="btn btn-primary btn-lg">
+                        <i class="fas fa-calculator me-2"></i>Try Prediction Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

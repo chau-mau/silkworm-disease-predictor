@@ -1,0 +1,5 @@
+Disease,Mean_With_Net,Mean_Without_Net,Difference,T_statistic,P_value,Significant
+Pebrine,0.0,0.0,0.0,,,No
+Virosis,1.1724137931034482,2.875,-1.7025862068965518,-1.361855462193385,0.1819453489819539,No
+Bacteriosis,0.0,0.0,0.0,,,No
+Muscardine,0.0,0.0,0.0,,,No

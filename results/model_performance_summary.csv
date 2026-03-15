@@ -1,0 +1,5 @@
+,LR_AUC,RF_AUC,N_samples,N_positive
+Pebrine,1.0,1.0,63.0,11.0
+Virosis,1.0,1.0,63.0,23.0
+Bacteriosis,1.0,1.0,63.0,11.0
+Muscardine,1.0,1.0,63.0,11.0

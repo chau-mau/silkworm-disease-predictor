@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+
+{% block title %}Model Information - Silkworm Disease Predictor{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-10 mx-auto">
+        <h2 class="mb-4"><i class="fas fa-brain me-2 text-primary"></i>Machine Learning Model Information</h2>
+        
+        <!-- Model Overview -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title">Model Architecture</h4>
+                <p class="card-text">
+                    This prediction system uses an ensemble of <strong>Random Forest</strong> and 
+                    <strong>Logistic Regression</strong> models trained on field data from Ranchi, Jharkhand.
+                </p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <h6 class="text-primary">Random Forest Classifier</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>100 estimators</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Max depth: 10</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Handles non-linear relationships</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Feature importance analysis</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-primary">Logistic Regression</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>Max iterations: 1000</li>
+                            <li><i class="fas fa-check text-success me-2"></i>L2 regularization</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Probability estimates</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Interpretable coefficients</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Model Performance -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title">Model Performance</h4>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Disease</th>
+                                <th>Random Forest Accuracy</th>
+                                <th>Logistic Regression Accuracy</th>
+                                <th>Training Samples</th>
+                                <th>Positive Cases</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for disease, model_dict in models.items() %}
+                            <tr>
+                                <td><strong>{{ disease }}</strong></td>
+                                <td>
+                                    <span class="badge bg-success">{{ "%.1f"|format(model_dict.rf_accuracy * 100) }}%</span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-success">{{ "%.1f"|format(model_dict.lr_accuracy * 100) }}%</span>
+                                </td>
+                                <td>{{ model_dict.n_samples }}</td>
+                                <td>{{ model_dict.n_positive }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Feature Importance -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title">Top Important Features</h4>
+                <p class="text-muted">Features ranked by importance for each disease prediction</p>
+                
+                <div class="row">
+                    {% for disease, model_dict in models.items() %}
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-header bg-primary text-white">
+                                <strong>{{ disease }}</strong>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    {% for feature, importance in model_dict.feature_importance.items() %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        {{ feature }}
+                                        <span class="badge bg-primary rounded-pill">{{ "%.3f"|format(importance) }}</span>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Input Features -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title">Input Features</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>Range</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Tmax</code></td>
+                                <td>Maximum Temperature</td>
+                                <td>Numeric</td>
+                                <td>15-45 °C</td>
+                            </tr>
+                            <tr>
+                                <td><code>Tmin</code></td>
+                                <td>Minimum Temperature</td>
+                                <td>Numeric</td>
+                                <td>10-35 °C</td>
+                            </tr>
+                            <tr>
+                                <td><code>Humidity</code></td>
+                                <td>Relative Humidity</td>
+                                <td>Numeric</td>
+                                <td>30-100 %</td>
+                            </tr>
+                            <tr>
+                                <td><code>THI</code></td>
+                                <td>Temperature-Humidity Index</td>
+                                <td>Numeric</td>
+                                <td>20-45</td>
+                            </tr>
+                            <tr>
+                                <td><code>Wind_Speed</code></td>
+                                <td>Wind Speed</td>
+                                <td>Numeric</td>
+                                <td>0-10 m/s</td>
+                            </tr>
+                            <tr>
+                                <td><code>Spacing</code></td>
+                                <td>Plot Spacing</td>
+                                <td>Categorical</td>
+                                <td>6x6, 6x10, 8x8, 10x10, 12x12</td>
+                            </tr>
+                            <tr>
+                                <td><code>Net_Tech</code></td>
+                                <td>Net Technology Used</td>
+                                <td>Binary</td>
+                                <td>0/1</td>
+                            </tr>
+                            <tr>
+                                <td><code>Has_Uzi</code></td>
+                                <td>Uzi Fly Presence</td>
+                                <td>Binary</td>
+                                <td>0/1</td>
+                            </tr>
+                            <tr>
+                                <td><code>Has_Mites</code></td>
+                                <td>Mites Presence</td>
+                                <td>Binary</td>
+                                <td>0/1</td>
+                            </tr>
+                            <tr>
+                                <td><code>Has_Ants</code></td>
+                                <td>Ants Presence</td>
+                                <td>Binary</td>
+                                <td>0/1</td>
+                            </tr>
+                            <tr>
+                                <td><code>Has_Spiders</code></td>
+                                <td>Spiders Presence</td>
+                                <td>Binary</td>
+                                <td>0/1</td>
+                            </tr>
+                            <tr>
+                                <td><code>Has_Athropoda</code></td>
+                                <td>Athropoda Presence</td>
+                                <td>Binary</td>
+                                <td>0/1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- API Documentation -->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">API Documentation</h4>
+                <p>You can also access predictions programmatically using our API endpoint.</p>
+                
+                <h6 class="mt-3">Endpoint</h6>
+                <div class="bg-dark text-light p-3 rounded">
+                    <code>POST /api/predict</code>
+                </div>
+                
+                <h6 class="mt-3">Request Body (JSON)</h6>
+                <pre class="bg-light p-3 rounded"><code>{
+  "tmax": 30.0,
+  "tmin": 22.0,
+  "humidity": 75.0,
+  "thi": 32.0,
+  "wind_speed": 1.5,
+  "spacing": "6x6",
+  "net_tech": 0,
+  "has_uzi": 0,
+  "has_mites": 0,
+  "has_ants": 0,
+  "has_spiders": 0,
+  "has_athropoda": 0
+}</code></pre>
+                
+                <h6 class="mt-3">Response</h6>
+                <pre class="bg-light p-3 rounded"><code>{
+  "success": true,
+  "predictions": {
+    "Pebrine": {"probability": 15.5, "risk_level": "Low"},
+    "Virosis": {"probability": 65.2, "risk_level": "High"},
+    "Bacteriosis": {"probability": 20.1, "risk_level": "Low"},
+    "Muscardine": {"probability": 10.8, "risk_level": "Low"}
+  }
+}</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

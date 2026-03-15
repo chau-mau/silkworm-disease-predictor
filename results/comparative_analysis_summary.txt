@@ -1,0 +1,30 @@
+================================================================================
+COMPARATIVE ANALYSIS: 2024 vs 2025
+================================================================================
+
+DATA OVERVIEW:
+  2024: 29 observations
+  2025: 81 observations
+
+DISEASE INCIDENCE COMPARISON:
+  Pebrine:
+    2024: 6 cases (mean: 0.207)
+    2025: 11.0 cases (mean: 0.136)
+    Difference: 5.0 cases
+
+  Virosis:
+    2024: 17 cases (mean: 0.586)
+    2025: 68.0 cases (mean: 0.840)
+    Difference: 51.0 cases
+
+  Bacteriosis:
+    2024: 6 cases (mean: 0.207)
+    2025: 11.0 cases (mean: 0.136)
+    Difference: 5.0 cases
+
+STATISTICAL TESTS:
+  Pebrine: Chi2=0.3715, p=0.5422 (Not significant)
+  Virosis: Chi2=13.1307, p=0.0003 (Significant)
+  Bacteriosis: Chi2=0.3715, p=0.5422 (Not significant)
+
+================================================================================

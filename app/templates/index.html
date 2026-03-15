@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bold text-primary">Silkworm Disease Prediction System</h1>
+            <p class="lead text-muted">Predict disease occurrence using climate and management parameters</p>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="row mb-4">
+            <div class="col-md-3 col-6">
+                <div class="card stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Diseases</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="card stat-card">
+                    <div class="stat-number">16</div>
+                    <div class="stat-label">Features</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="card stat-card">
+                    <div class="stat-number">81</div>
+                    <div class="stat-label">Observations</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="card stat-card">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card prediction-card">
+            <div class="card-body p-4">
+                <h4 class="card-title mb-4"><i class="fas fa-sliders-h me-2 text-primary"></i>Enter Parameters</h4>
+                
+                <form id="predictionForm">
+                    <div class="row">
+                        <!-- Climate Parameters -->
+                        <div class="col-md-6">
+                            <h6 class="text-muted mb-3"><i class="fas fa-cloud-sun me-2"></i>Climate Parameters</h6>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Maximum Temperature (°C)</label>
+                                <input type="number" class="form-control" name="tmax" value="30" step="0.1" min="15" max="45">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Minimum Temperature (°C)</label>
+                                <input type="number" class="form-control" name="tmin" value="22" step="0.1" min="10" max="35">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Relative Humidity (%)</label>
+                                <input type="number" class="form-control" name="humidity" value="75" step="1" min="30" max="100">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">THI (Temperature-Humidity Index)</label>
+                                <input type="number" class="form-control" name="thi" value="32" step="0.1" min="20" max="45">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Wind Speed (m/s)</label>
+                                <input type="number" class="form-control" name="wind_speed" value="1.5" step="0.1" min="0" max="10">
+                            </div>
+                        </div>
+
+                        <!-- Management Parameters -->
+                        <div class="col-md-6">
+                            <h6 class="text-muted mb-3"><i class="fas fa-cogs me-2"></i>Management Parameters</h6>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Plot Spacing</label>
+                                <select class="form-select" name="spacing">
+                                    {% for spacing in spacing_options %}
+                                    <option value="{{ spacing }}">{{ spacing }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Net Technology</label>
+                                <select class="form-select" name="net_tech">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            
+                            <h6 class="text-muted mb-3 mt-4"><i class="fas fa-bug me-2"></i>Pest Presence</h6>
+                            
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="has_uzi" value="1" id="uziCheck">
+                                        <label class="form-check-label" for="uziCheck">Uzi Fly</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="has_mites" value="1" id="mitesCheck">
+                                        <label class="form-check-label" for="mitesCheck">Mites</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="has_ants" value="1" id="antsCheck">
+                                        <label class="form-check-label" for="antsCheck">Ants</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="has_spiders" value="1" id="spidersCheck">
+                                        <label class="form-check-label" for="spidersCheck">Spiders</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="has_athropoda" value="1" id="athropodaCheck">
+                                        <label class="form-check-label" for="athropodaCheck">Athropoda</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-calculator me-2"></i>Predict Disease Risk
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Loading Spinner -->
+                <div class="loading-spinner text-center mt-4">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2 text-muted">Analyzing parameters...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Container -->
+        <div class="result-container mt-4">
+            <div class="card">
+                <div class="card-body p-4">
+                    <h4 class="card-title mb-4"><i class="fas fa-chart-bar me-2 text-success"></i>Prediction Results</h4>
+                    
+                    <!-- Overall Risk -->
+                    <div class="alert alert-info mb-4">
+                        <h5 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i>Overall Risk Score: <span id="overallRisk">0</span>%</h5>
+                    </div>
+
+                    <!-- Input Summary -->
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-2">Input Summary</h6>
+                        <div class="row" id="inputSummary"></div>
+                    </div>
+
+                    <!-- Disease Predictions -->
+                    <div id="diseasePredictions"></div>
+
+                    <!-- Recommendations -->
+                    <div class="mt-4 p-3 bg-light rounded">
+                        <h6><i class="fas fa-lightbulb me-2 text-warning"></i>Recommendations</h6>
+                        <ul id="recommendations" class="mb-0"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('predictionForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Show loading
+    document.querySelector('.loading-spinner').style.display = 'block';
+    document.querySelector('.result-container').style.display = 'none';
+    
+    // Collect form data
+    const formData = new FormData(this);
+    
+    try {
+        const response = await fetch('/predict', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            displayResults(data);
+        } else {
+            alert('Error: ' + data.error);
+        }
+    } catch (error) {
+        alert('Error making prediction: ' + error.message);
+    } finally {
+        document.querySelector('.loading-spinner').style.display = 'none';
+    }
+});
+
+function displayResults(data) {
+    // Show results container
+    const resultContainer = document.querySelector('.result-container');
+    resultContainer.style.display = 'block';
+    resultContainer.classList.add('fade-in');
+    
+    // Update overall risk
+    document.getElementById('overallRisk').textContent = data.overall_risk;
+    
+    // Update input summary
+    const summaryHtml = Object.entries(data.input_summary).map(([key, value]) => `
+        <div class="col-md-4 col-6 mb-2">
+            <small class="text-muted">${key}</small>
+            <div class="fw-bold">${value}</div>
+        </div>
+    `).join('');
+    document.getElementById('inputSummary').innerHTML = summaryHtml;
+    
+    // Update disease predictions
+    const predictionsHtml = Object.entries(data.predictions).map(([disease, pred]) => {
+        const riskClass = pred.risk_level.class;
+        const riskLevel = pred.risk_level.level;
+        const color = pred.risk_level.color;
+        
+        return `
+            <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-bold">${disease}</span>
+                    <span class="badge bg-${riskClass}">${riskLevel} Risk (${pred.probability}%)</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar bg-${riskClass}" role="progressbar" 
+                         style="width: ${pred.probability}%" 
+                         aria-valuenow="${pred.probability}" aria-valuemin="0" aria-valuemax="100">
+                        ${pred.probability}%
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+    document.getElementById('diseasePredictions').innerHTML = predictionsHtml;
+    
+    // Generate recommendations
+    const recommendations = [];
+    const predictions = data.predictions;
+    
+    if (predictions.Virosis.probability > 50) {
+        recommendations.push('High risk of Virosis - Ensure proper sanitation and disinfection');
+    }
+    if (predictions.Pebrine.probability > 50) {
+        recommendations.push('High risk of Pebrine - Inspect silkworm eggs carefully');
+    }
+    if (predictions.Bacteriosis.probability > 50) {
+        recommendations.push('High risk of Bacteriosis - Maintain optimal humidity levels');
+    }
+    if (data.input_summary['Pests Present'] > 0) {
+        recommendations.push('Pests detected - Implement integrated pest management practices');
+    }
+    if (parseFloat(data.input_summary['THI']) > 34) {
+        recommendations.push('High THI detected - Improve ventilation and cooling');
+    }
+    
+    if (recommendations.length === 0) {
+        recommendations.push('Low disease risk - Continue current management practices');
+    }
+    
+    document.getElementById('recommendations').innerHTML = recommendations.map(r => `<li>${r}</li>`).join('');
+    
+    // Scroll to results
+    resultContainer.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+{% endblock %}

@@ -1,0 +1,91 @@
+================================================================================
+SILKWORM DISEASE ANALYSIS - RANCHI 2025
+================================================================================
+
+DATA OVERVIEW:
+  Total observations: 81
+  Date range: 2025-10-07 00:00:00 to 2025-10-31 00:00:00
+  Number of plots: 8
+  Spacing types: 8x8, 12x12, 6x6, 6x10, 10x10
+  Instar stages: 02-03-2005, 03-04-2005, 01-03-2005, 3rd, 5th, 1st
+
+DISEASE SUMMARY:
+  Pebrine: Total=11.0, Mean=0.136
+  Virosis: Total=68.0, Mean=0.840
+  Bacteriosis: Total=11.0, Mean=0.136
+  Muscardine: Total=11.0, Mean=0.136
+
+CLIMATE SUMMARY:
+  Tmax: Mean=28.83, Range=23.60-35.00
+  Tmin: Mean=21.62, Range=17.00-26.00
+  Humidity: Mean=76.99, Range=60.50-92.20
+  THI: Mean=33.02, Range=30.00-36.00
+
+KEY CORRELATIONS (p < 0.05):
+  Pebrine vs Tmax: r=0.296, p=0.0073
+  Pebrine vs Tmin: r=-0.416, p=0.0001
+  Pebrine vs Temp_Range: r=0.400, p=0.0002
+  Virosis vs Tmax: r=0.273, p=0.0136
+  Virosis vs Temp_Range: r=0.283, p=0.0105
+  Virosis vs Dry_Bulb: r=-0.253, p=0.0450
+  Bacteriosis vs Tmax: r=0.296, p=0.0073
+  Bacteriosis vs Tmin: r=-0.416, p=0.0001
+  Bacteriosis vs Temp_Range: r=0.400, p=0.0002
+  Muscardine vs Tmax: r=0.296, p=0.0073
+  Muscardine vs Tmin: r=-0.416, p=0.0001
+  Muscardine vs Temp_Range: r=0.400, p=0.0002
+
+SPACING EFFECTS:
+  Pebrine: F=10.321, p=0.0000 (Significant)
+  Virosis: F=37.882, p=0.0000 (Significant)
+  Bacteriosis: F=10.321, p=0.0000 (Significant)
+  Muscardine: F=10.321, p=0.0000 (Significant)
+
+INSTAR EFFECTS:
+  Pebrine: F=5.468, p=0.0002 (Significant)
+  Virosis: F=4.799, p=0.0007 (Significant)
+  Bacteriosis: F=5.468, p=0.0002 (Significant)
+  Muscardine: F=5.468, p=0.0002 (Significant)
+
+PEST-DISEASE CORRELATIONS:
+  Has_Uzi vs Pebrine: r=0.401, p=0.0002
+  Has_Uzi vs Virosis: r=0.326, p=0.0030
+  Has_Uzi vs Bacteriosis: r=0.401, p=0.0002
+  Has_Uzi vs Muscardine: r=0.401, p=0.0002
+  Has_Mites vs Pebrine: r=0.320, p=0.0036
+  Has_Mites vs Virosis: r=0.304, p=0.0058
+  Has_Mites vs Bacteriosis: r=0.320, p=0.0036
+  Has_Mites vs Muscardine: r=0.320, p=0.0036
+  Has_Ants vs Pebrine: r=-0.257, p=0.0204
+  Has_Ants vs Virosis: r=0.447, p=0.0000
+  Has_Ants vs Bacteriosis: r=-0.257, p=0.0204
+  Has_Ants vs Muscardine: r=-0.257, p=0.0204
+  Total_Pests vs Virosis: r=0.408, p=0.0002
+
+NET TECHNOLOGY EFFICACY:
+  Pebrine: Mean with net=0.000, without=0.000, p=nan (Not significant)
+  Virosis: Mean with net=1.172, without=2.875, p=0.1819 (Not significant)
+  Bacteriosis: Mean with net=0.000, without=0.000, p=nan (Not significant)
+  Muscardine: Mean with net=0.000, without=0.000, p=nan (Not significant)
+
+MODEL PERFORMANCE:
+  Pebrine:
+    Logistic Regression AUC: 1.000
+    Random Forest AUC: 1.000
+    Samples: 63, Positive cases: 11
+  Virosis:
+    Logistic Regression AUC: 1.000
+    Random Forest AUC: 1.000
+    Samples: 63, Positive cases: 23
+  Bacteriosis:
+    Logistic Regression AUC: 1.000
+    Random Forest AUC: 1.000
+    Samples: 63, Positive cases: 11
+  Muscardine:
+    Logistic Regression AUC: 1.000
+    Random Forest AUC: 1.000
+    Samples: 63, Positive cases: 11
+
+================================================================================
+END OF REPORT
+================================================================================

@@ -1,0 +1,129 @@
+================================================================================
+THERMO-HUMIDITY INDEX AND SILKWORM DISEASE CORRELATION ANALYSIS
+================================================================================
+Location: Ranchi, Jharkhand, India
+Date Range: 2024-09-24 to 2024-10-30
+Total Observations: 29 days
+================================================================================
+
+SILKWORM DISEASES:
+  PB - Pebrine
+  VR - Viriosis
+  BT - Bacteriosis
+
+THI STRESS CATEGORIES:
+  < 70  : No Stress
+  70-72 : Mild Stress
+  72-80 : Moderate Stress
+  80-90 : Severe Stress
+  > 90  : Emergency
+
+================================================================================
+STATISTICAL RESULTS
+================================================================================
+
+
+================================================================================
+Disease: Pebrine (PB)
+================================================================================
+
+Sample Size:
+  Total observations: 29
+  Positive cases (disease present): 6
+  Negative cases (disease absent): 23
+
+Point-Biserial Correlation:
+  Correlation with THI: -0.3165
+  P-value: 0.094324
+  Statistically Significant (p<0.05): No
+
+  Correlation with Temperature: -0.2249
+  P-value: 0.240788
+
+  Correlation with Humidity: -0.2430
+  P-value: 0.204063
+
+Mean THI Comparison:
+  Mean THI when Pebrine present: 71.90
+  Mean THI when Pebrine absent: 73.48
+  Difference: -1.57
+
+Independent T-Test:
+  T-statistic: -1.7340
+  P-value: 0.094324
+  Significant difference (p<0.05): No
+
+Interpretation:
+  There is a moderate negative correlation between Pebrine and THI.
+  This correlation is NOT statistically significant (p≥0.05).
+
+
+================================================================================
+Disease: Viriosis (VR)
+================================================================================
+
+Sample Size:
+  Total observations: 29
+  Positive cases (disease present): 17
+  Negative cases (disease absent): 12
+
+Point-Biserial Correlation:
+  Correlation with THI: 0.3892
+  P-value: 0.036900
+  Statistically Significant (p<0.05): Yes
+
+  Correlation with Temperature: 0.3450
+  P-value: 0.066859
+
+  Correlation with Humidity: 0.0392
+  P-value: 0.840110
+
+Mean THI Comparison:
+  Mean THI when Viriosis present: 73.81
+  Mean THI when Viriosis absent: 72.22
+  Difference: 1.59
+
+Independent T-Test:
+  T-statistic: 2.1955
+  P-value: 0.036900
+  Significant difference (p<0.05): Yes
+
+Interpretation:
+  There is a moderate positive correlation between Viriosis and THI.
+  This correlation is statistically significant (p<0.05).
+
+
+================================================================================
+Disease: Bacteriosis (BT)
+================================================================================
+
+Sample Size:
+  Total observations: 29
+  Positive cases (disease present): 6
+  Negative cases (disease absent): 23
+
+Point-Biserial Correlation:
+  Correlation with THI: 0.0709
+  P-value: 0.714827
+  Statistically Significant (p<0.05): No
+
+  Correlation with Temperature: 0.1090
+  P-value: 0.573374
+
+  Correlation with Humidity: -0.1520
+  P-value: 0.431288
+
+Mean THI Comparison:
+  Mean THI when Bacteriosis present: 73.43
+  Mean THI when Bacteriosis absent: 73.08
+  Difference: 0.35
+
+Independent T-Test:
+  T-statistic: 0.3692
+  P-value: 0.714827
+  Significant difference (p<0.05): No
+
+Interpretation:
+  There is a negligible positive correlation between Bacteriosis and THI.
+  This correlation is NOT statistically significant (p≥0.05).
+

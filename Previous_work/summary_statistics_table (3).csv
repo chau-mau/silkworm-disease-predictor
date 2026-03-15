@@ -1,0 +1,4 @@
+Disease,Code,Positive Cases,Negative Cases,Correlation (r),P-value,Significant,THI (Disease Present),THI (Disease Absent),Difference
+Pebrine,PB,6,23,-0.3165,0.094324,No,71.90,73.48,-1.57
+Viriosis,VR,17,12,0.3892,0.036900,Yes,73.81,72.22,1.59
+Bacteriosis,BT,6,23,0.0709,0.714827,No,73.43,73.08,0.35
