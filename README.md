@@ -138,7 +138,7 @@ If you use this tool in your research, please cite:
 
 ```
 Silkworm Disease Predictor (2025)
-Machine Learning-based Disease Prediction for Sericulture
+Machine Learning-based Disease Prediction for Tasar Sericulture
 Ranchi, Jharkhand, India
 ```
 
@@ -152,4 +152,4 @@ For questions or collaborations, please open an issue on GitHub.
 
 ---
 
-**Developed for Silkworm Disease Research - Ranchi, Jharkhand**
+**Developed for Tasar Silkworm Disease Monitoring - Ranchi, Jharkhand**
