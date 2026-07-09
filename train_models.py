@@ -33,7 +33,7 @@ if 'Net_Tech' in df.columns:
     df['Net_Tech_Binary'] = (df['Net_Tech'] == 'Yes').astype(int)
     feature_cols.append('Net_Tech_Binary')
 
-disease_cols = ['Pebrine', 'Virosis', 'Bacteriosis', 'Muscardine']
+disease_cols = ['Virosis', 'Bacteriosis']
 
 # Store model info
 model_info = {

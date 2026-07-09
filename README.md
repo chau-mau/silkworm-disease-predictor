@@ -9,11 +9,9 @@ A machine learning web application to predict silkworm disease occurrence based 
 
 ## Features
 
-- **Disease Prediction**: Predicts 4 major silkworm diseases:
-  - Pebrine (Microsporidian disease)
+- **Disease Prediction**: Predicts viral and bacterial silkworm diseases:
   - Virosis (Viral infections)
   - Bacteriosis (Bacterial infections)
-  - Muscardine (Fungal disease)
 
 - **Input Parameters**:
   - Climate: Temperature, Humidity, THI, Wind Speed

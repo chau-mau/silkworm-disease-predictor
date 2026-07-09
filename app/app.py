@@ -76,9 +76,10 @@ def predict():
         input_array = np.array([[features.get(col, 0) for col in feature_cols]])
         input_scaled = scaler.transform(input_array)
         
-        # Make predictions
+        # Make predictions (only for diseases in model_info)
         predictions = {}
-        for disease, model_dict in models.items():
+        for disease in model_info['diseases']:
+            model_dict = models[disease]
             rf = model_dict['random_forest']
             lr = model_dict['logistic_regression']
             
@@ -155,7 +156,8 @@ def api_predict():
         input_scaled = scaler.transform(input_array)
         
         predictions = {}
-        for disease, model_dict in models.items():
+        for disease in model_info['diseases']:
+            model_dict = models[disease]
             rf = model_dict['random_forest']
             lr = model_dict['logistic_regression']
             

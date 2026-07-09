@@ -12,7 +12,7 @@
         <div class="row mb-4">
             <div class="col-md-3 col-6">
                 <div class="card stat-card">
-                    <div class="stat-number">4</div>
+                    <div class="stat-number">2</div>
                     <div class="stat-label">Diseases</div>
                 </div>
             </div>
@@ -253,9 +253,6 @@ function displayResults(data) {
     
     if (predictions.Virosis.probability > 50) {
         recommendations.push('High risk of Virosis - Ensure proper sanitation and disinfection');
-    }
-    if (predictions.Pebrine.probability > 50) {
-        recommendations.push('High risk of Pebrine - Inspect silkworm eggs carefully');
     }
     if (predictions.Bacteriosis.probability > 50) {
         recommendations.push('High risk of Bacteriosis - Maintain optimal humidity levels');
