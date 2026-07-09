@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+s<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -146,7 +146,7 @@
                 <div class="row mb-4">
                     <div class="col-md-3 col-6">
                         <div class="card stat-card">
-                            <div class="stat-number">4</div>
+                            <div class="stat-number">2</div>
                             <div class="stat-label">Diseases</div>
                         </div>
                     </div>
@@ -181,12 +181,12 @@
                                     <h6 class="text-muted mb-3"><i class="fas fa-cloud-sun me-2"></i>Climate Parameters</h6>
                                     
                                     <div class="mb-3">
-                                        <label class="form-label">Maximum Temperature (°C)</label>
+                                        <label class="form-label">Maximum Temperature (Â°C)</label>
                                         <input type="number" class="form-control" id="tmax" value="30" step="0.1" min="15" max="45">
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label class="form-label">Minimum Temperature (°C)</label>
+                                        <label class="form-label">Minimum Temperature (Â°C)</label>
                                         <input type="number" class="form-control" id="tmin" value="22" step="0.1" min="10" max="35">
                                     </div>
                                     
@@ -300,14 +300,12 @@
                         
                         <h6 class="mt-3">Diseases Monitored:</h6>
                         <ul>
-                            <li><strong>Pebrine</strong> - Microsporidian disease caused by Nosema bombycis</li>
                             <li><strong>Virosis</strong> - Viral infections affecting silkworms</li>
                             <li><strong>Bacteriosis</strong> - Bacterial infections</li>
-                            <li><strong>Muscardine</strong> - Fungal disease caused by Beauveria bassiana</li>
                         </ul>
                         
                         <h6 class="mt-3">Research Location:</h6>
-                        <p class="mb-0">Ranchi, Jharkhand, India (23.3441°N, 85.3096°E)</p>
+                        <p class="mb-0">Ranchi, Jharkhand, India (23.3441Â°N, 85.3096Â°E)</p>
                     </div>
                 </div>
             </div>
@@ -359,10 +357,8 @@
             setTimeout(() => {
                 // Rule-based predictions (simplified from trained models)
                 const predictions = {
-                    'Pebrine': calculateDiseaseRisk(tmax, tmin, humidity, thi, total_pests, net_tech, 0.3, 0.4),
                     'Virosis': calculateDiseaseRisk(tmax, tmin, humidity, thi, total_pests, net_tech, 0.4, 0.5),
-                    'Bacteriosis': calculateDiseaseRisk(tmax, tmin, humidity, thi, total_pests, net_tech, 0.3, 0.4),
-                    'Muscardine': calculateDiseaseRisk(tmax, tmin, humidity, thi, total_pests, net_tech, 0.25, 0.35)
+                    'Bacteriosis': calculateDiseaseRisk(tmax, tmin, humidity, thi, total_pests, net_tech, 0.3, 0.4)
                 };
                 
                 displayResults(predictions, total_pests, thi);
@@ -416,7 +412,7 @@
             
             // Calculate overall risk
             const overallRisk = Math.round(
-                Object.values(predictions).reduce((sum, p) => sum + p.probability, 0) / 4
+                Object.values(predictions).reduce((sum, p) => sum + p.probability, 0) / 2
             );
             document.getElementById('overallRisk').textContent = overallRisk;
             
@@ -445,9 +441,6 @@
             if (predictions.Virosis.probability > 50) {
                 recommendations.push('High risk of Virosis - Ensure proper sanitation and disinfection');
             }
-            if (predictions.Pebrine.probability > 50) {
-                recommendations.push('High risk of Pebrine - Inspect silkworm eggs carefully');
-            }
             if (predictions.Bacteriosis.probability > 50) {
                 recommendations.push('High risk of Bacteriosis - Maintain optimal humidity levels');
             }
@@ -470,3 +463,8 @@
     </script>
 </body>
 </html>
+.
+
+
+
+##
