@@ -5,26 +5,28 @@
 [![Flask](https://img.shields.io/badge/Flask-2.3-lightgrey)](https://flask.palletsprojects.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
+**Author:** Nidhi Sukhija, chau-mau · she/her  
+**Developed at:** CSB-Central Tasar Research and Training Institute (CTRTI), Ranchi, Jharkhand
+
 A machine learning web application to predict silkworm disease occurrence based on climate and management parameters.
 
 ![Silkworm Disease Predictor](docs/screenshot.png)
 
 ## Features
 
-- **Disease Prediction**: Predicts 4 major silkworm diseases:
-  - Pebrine (Microsporidian disease)
+- **Disease Prediction**: Predicts 2 major silkworm diseases:
   - Virosis (Viral infections)
   - Bacteriosis (Bacterial infections)
-  - Muscardine (Fungal disease)
 
-- **Input Parameters**:
-  - Climate: Temperature, Humidity, THI, Wind Speed
-  - Management: Plot spacing, Net technology
-  - Pest monitoring: Uzi fly, Mites, Ants, Spiders, Athropoda
+- **Weather-Driven**: No manual data entry - the app fetches a live 7-day
+  weather forecast for Ranchi from public-domain sources:
+  - Open-Meteo Forecast API (primary, free, no API key)
+  - NASA POWER (fallback)
+  - (IMD/Mausam APIs require IP whitelisting; see `app/forecast.py` notes)
 
+- **Weather Features**: Tmax, Tmin, Humidity, THI (NRC 1971, auto-derived), Wind Speed
 - **ML Models**: Ensemble of Random Forest and Logistic Regression
-- **Accuracy**: 95%+ prediction accuracy
-- **Risk Levels**: Low, Moderate, High, Very High with recommendations
+- **Risk Levels**: Low, Moderate, High, Very High with daily outlook chart
 
 ## Live Demo
 
@@ -33,9 +35,10 @@ A machine learning web application to predict silkworm disease occurrence based 
 ## Research Background
 
 - **Location**: Ranchi, Jharkhand, India (23.3441°N, 85.3096°E)
-- **Study Period**: October 2025
-- **Data Points**: 81 observations from 8 plots
-- **Models**: Trained on field data with 16 features
+- **Study Period**: October 2025 + August-September 2026
+- **Data Points**: 81 plot-level observations (2025) + 53 daily records (2026)
+- **2026 Climate**: NASA POWER daily data, backfilled with Open-Meteo ERA5
+- **Models**: Weather-only features (5), trained on combined 2025-2026 data
 
 ## Quick Start
 
@@ -49,33 +52,33 @@ cd silkworm-disease-predictor
 # Install dependencies
 pip install -r app/requirements.txt
 
-# Run the application
+# Run the application (use Python 3; on Windows: py -3 app.py or app\run_app.bat)
 cd app
 python app.py
 
 # Open http://localhost:5000 in your browser
 ```
 
-### API Usage
+### Forecast API
+
+```bash
+curl -X POST http://localhost:5000/api/forecast \
+  -H "Content-Type: application/json" \
+  -d '{"days": 7}'
+```
+
+Returns the live 7-day forecast (Tmax, Tmin, RH, wind, rainfall, THI) with a
+Virosis/Bacteriosis risk prediction for each day.
+
+### Direct Prediction API
 
 ```bash
 curl -X POST http://localhost:5000/api/predict \
   -H "Content-Type: application/json" \
-  -d '{
-    "tmax": 30,
-    "tmin": 22,
-    "humidity": 75,
-    "thi": 32,
-    "wind_speed": 1.5,
-    "spacing": "6x6",
-    "net_tech": 0,
-    "has_uzi": 0,
-    "has_mites": 0,
-    "has_ants": 0,
-    "has_spiders": 0,
-    "has_athropoda": 0
-  }'
+  -d '{"tmax": 30, "tmin": 22, "humidity": 75, "wind_speed": 1.5}'
 ```
+
+THI is computed automatically (NRC 1971 formula).
 
 ## Project Structure
 
@@ -83,12 +86,14 @@ curl -X POST http://localhost:5000/api/predict \
 .
 ├── app/                      # Flask application
 │   ├── app.py               # Main backend
+│   ├── forecast.py          # Real-time forecast (Open-Meteo + NASA POWER)
 │   ├── requirements.txt     # Dependencies
 │   ├── models.pkl          # Trained ML models
 │   ├── model_info.json     # Model metadata
 │   └── templates/          # HTML templates
 │       ├── base.html
 │       ├── index.html
+│       ├── forecast.html
 │       ├── about.html
 │       └── model_info.html
 ├── docs/                    # Static website (GitHub Pages)

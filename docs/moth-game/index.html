@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>मादा शलभ परीक्षण मार्गदर्शिका | CSB-CTRTI Ranchi</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary: #2c5530;
+        --secondary: #4a7c59;
+        --accent: #8fbc8f;
+        --good: #2c5530;
+        --bad: #e74c3c;
+    }
+    * { box-sizing: border-box; }
+    body {
+        font-family: 'Noto Sans Devanagari', 'Segoe UI', Tahoma, sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh; margin: 0;
+    }
+    header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #fff; padding: 14px 20px; display: flex; align-items: center; gap: 14px;
+        box-shadow: 0 2px 10px rgba(0,0,0,.15);
+    }
+    header img.brand { height: 44px; border-radius: 8px; border: 2px solid rgba(255,255,255,.6); }
+    header .ht { font-size: 1.3rem; font-weight: 700; }
+    header .hs { font-size: .8rem; opacity: .9; }
+    .wrap { max-width: 1000px; margin: 24px auto; padding: 0 16px; }
+    .title-block { text-align: center; margin-bottom: 16px; }
+    .title-block h1 { color: var(--primary); margin: 6px 0 2px; }
+    .title-block p { color: #555; margin: 0; }
+    .steps { display: flex; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 4px; }
+    .step-pill {
+        flex: 1; min-width: 110px; text-align: center; padding: 8px 4px; margin: 0 2px;
+        border-radius: 20px; background: #e9ecef; color: #6c757d; font-size: .8rem; font-weight: 600; transition: all .3s;
+    }
+    .step-pill.active { background: var(--primary); color: #fff; }
+    .step-pill.done { background: var(--accent); color: #fff; }
+    .panel { background: #fff; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,.1); padding: 24px; }
+    .instruction {
+        background: #f8f9fa; border-left: 5px solid var(--primary);
+        padding: 12px 16px; border-radius: 8px; margin-bottom: 18px; font-size: 1.02rem;
+    }
+    .btn {
+        background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff;
+        border: none; border-radius: 25px; padding: 12px 28px; font-weight: 700;
+        font-size: 1rem; cursor: pointer; transition: transform .2s; font-family: inherit;
+    }
+    .btn:hover { transform: scale(1.05); }
+    .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+    .btn-outline {
+        background: #fff; color: var(--primary); border: 2px solid var(--primary);
+        margin-left: 10px;
+    }
+    .center { text-align: center; }
+    .mt-2 { margin-top: 12px; }
+    .mt-3 { margin-top: 18px; }
+
+    /* ---------- Feedback ---------- */
+    .feedback { margin-top: 16px; text-align: center; }
+    .cloud {
+        position: relative; display: inline-block; max-width: 640px;
+        background: #fff; border: 3px solid var(--secondary);
+        border-radius: 30px; padding: 18px 22px; margin: 0 auto;
+        box-shadow: 0 6px 16px rgba(0,0,0,.12); animation: floatIn .5s ease;
+    }
+    .cloud::before, .cloud::after {
+        content: ''; position: absolute; background: #fff; border: 3px solid var(--secondary); border-radius: 50%;
+    }
+    .cloud::before { width: 26px; height: 26px; top: -16px; left: 40px; }
+    .cloud::after { width: 16px; height: 16px; top: -24px; left: 72px; }
+    .cloud.good { border-color: var(--good); }
+    .cloud.good::before, .cloud.good::after { border-color: var(--good); }
+    .cloud.bad { border-color: var(--bad); }
+    .cloud.bad::before, .cloud.bad::after { border-color: var(--bad); }
+    @keyframes floatIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ---------- Moth selection ---------- */
+    .moth-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+    .moth-card {
+        border: 3px solid #dee2e6; border-radius: 14px; padding: 14px 18px 10px;
+        cursor: pointer; transition: all .25s; background: #fdfcf8; width: 260px; text-align: center;
+    }
+    .moth-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 8px 18px rgba(0,0,0,.15); }
+    .moth-card.selected { border-color: #f39c12; background: #fff8e6; }
+    .moth-card .tag { font-weight: 700; margin-top: 4px; }
+    .moth-card small { color: #6c757d; display: block; margin-top: 4px; }
+    .moth-svg { width: 100%; height: 170px; }
+
+    /* antenna animations */
+    .ant-female { transform-origin: 100px 42px; animation: swayFemale 3s ease-in-out infinite; }
+    @keyframes swayFemale { 0%,100%{transform: rotate(0deg)} 50%{transform: rotate(2deg)} }
+    .ant-male { transform-origin: 100px 42px; animation: swayMale 2s ease-in-out infinite; }
+    @keyframes swayMale { 0%,100%{transform: rotate(0deg)} 25%{transform: rotate(-4deg)} 75%{transform: rotate(4deg)} }
+
+    /* ---------- Tool tray ---------- */
+    .tool-tray { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .tool-item {
+        width: 112px; border: 3px solid #dee2e6; border-radius: 14px; padding: 10px 6px;
+        text-align: center; cursor: pointer; transition: all .25s; background: #fff;
+    }
+    .tool-item:hover { border-color: var(--primary); transform: translateY(-4px); }
+    .tool-item.picked { border-color: var(--accent); background: #eef7ee; opacity: .55; pointer-events: none; }
+    .tool-item.wrong-flash { animation: shake .4s; border-color: var(--bad); }
+    .tool-icon { font-size: 2rem; display: block; margin-bottom: 4px; }
+    .exam-tray {
+        min-height: 110px; border: 3px dashed var(--accent); border-radius: 14px;
+        display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center;
+        padding: 12px; background: #f4faf4; margin-top: 16px;
+    }
+    .exam-tray .tool-mini {
+        background: #fff; border: 2px solid var(--accent); border-radius: 10px;
+        padding: 6px 10px; font-size: .85rem; font-weight: 600; animation: pop .3s;
+    }
+    @keyframes pop { 0% { transform: scale(.3); } 100% { transform: scale(1); } }
+    @keyframes shake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-6px);} 75%{transform:translateX(6px);} }
+
+    /* ---------- Ordered action steps ---------- */
+    .prep-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .prep-btn {
+        border: 3px solid var(--primary); background: #fff; border-radius: 12px;
+        padding: 12px 14px; font-weight: 600; cursor: pointer; transition: all .25s; font-family: inherit; font-size: .92rem;
+        max-width: 260px; text-align: center; line-height: 1.3;
+    }
+    .prep-btn:hover { background: var(--primary); color: #fff; }
+    .prep-btn.done { border-color: var(--accent); background: var(--accent); color: #fff; pointer-events: none; }
+    .prep-btn.wrong-flash { animation: shake .4s; border-color: var(--bad); }
+    .lab-visual {
+        width: 300px; height: 170px; margin: 16px auto; border-radius: 12px;
+        background: linear-gradient(135deg,#eef5f7,#d9e9ee); border: 2px solid #b8d2da;
+        display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+    }
+    .mortar {
+        width: 120px; height: 70px; background: #c9ced6; border-radius: 0 0 60px 60px;
+        border: 3px solid #9aa3ad; position: relative;
+    }
+    .mortar .mix { position: absolute; left: 15px; right: 15px; top: 8px; height: 16px; background: #b08d5e; border-radius: 50%; opacity: 0; transition: opacity .4s; }
+    .pestle {
+        position: absolute; width: 18px; height: 80px; background: #aab2bc; border: 2px solid #8a939e;
+        border-radius: 9px; right: 30px; top: -40px; transform: rotate(20deg); transform-origin: bottom;
+        transition: transform .3s;
+    }
+    .pestle.grind { animation: grind .5s 3; }
+    @keyframes grind { 0%,100% { transform: rotate(20deg); } 50% { transform: rotate(45deg) translateY(8px); } }
+    .smear { width: 80px; height: 40px; border-radius: 50%; background: rgba(130,95,55,.4); filter: blur(2px); position: absolute; top: 90px; left: 50%; transform: translateX(-50%); }
+    .sample-blob { width: 26px; height: 20px; border-radius: 45%; background: rgba(130,95,55,.55); position: absolute; top: 100px; left: 46%; }
+    .drop {
+        position: absolute; width: 12px; height: 15px; background: rgba(90,160,200,.8);
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; top: 88px; left: 50%;
+        transform: translateX(-50%);
+    }
+    .cover-slip {
+        position: absolute; width: 100px; height: 100px; border: 1px solid rgba(160,190,205,.35);
+        border-radius: 50%; background: rgba(230,245,255,.18);
+        box-shadow: 0 1px 3px rgba(0,0,0,.05);
+        top: 68px; left: 50%; transform: translateX(-50%);
+    }
+    .hand-coverslip::after {
+        content: '✋'; position: absolute; right: -22px; top: -34px;
+        font-size: 2.2rem; animation: placeHand 1s forwards;
+        transform-origin: bottom left;
+    }
+    @keyframes placeHand {
+        0% { transform: translateY(-40px) rotate(-15deg); opacity: 0; }
+        60% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        80% { transform: translateY(4px) rotate(2deg); }
+        100% { transform: translateY(0) rotate(0deg); }
+    }
+    .cut-moth { transition: transform .5s, opacity .5s; }
+    .cut-moth.cut { transform: scaleY(.55) rotate(4deg); opacity: .85; }
+    .cut-stage { position: relative; width: 180px; margin: 0 auto; }
+    .cut-zone {
+        position: absolute; left: 28px; right: 28px; top: 78px; height: 52px;
+        border: 3px dashed #e74c3c; border-radius: 14px; background: rgba(231,76,60,.12);
+        animation: pulseZone 1.2s infinite;
+    }
+    .cut-scissors { position: absolute; right: -26px; top: 86px; font-size: 1.8rem; transform: rotate(-35deg); }
+    .cut-label {
+        position: absolute; left: 0; right: 0; top: 134px; text-align: center;
+        color: #e74c3c; font-weight: 700; font-size: .8rem;
+    }
+    @keyframes pulseZone { 0%,100%{opacity:.6} 50%{opacity:1} }
+
+    /* ---------- Microscope ---------- */
+    .scope-wrap { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; align-items: flex-start; }
+    .scope-view {
+        width: 320px; height: 320px; border-radius: 50%; border: 10px solid #343a40;
+        background: #111; position: relative; overflow: hidden; cursor: grab; user-select: none;
+        box-shadow: inset 0 0 30px rgba(0,0,0,.9);
+    }
+    .scope-view:active { cursor: grabbing; }
+    .scope-slide {
+        position: absolute; top: 0; left: 0; width: 520px; height: 520px;
+        background: radial-gradient(circle at 40% 40%, #f7f4e8 0%, #e8e3d2 40%, #d8d2bc 70%, #b8b09a 100%);
+        filter: blur(12px);
+        touch-action: none; border-radius: 50%;
+    }
+    .field-smudge {
+        position: absolute; border-radius: 50%;
+        background: radial-gradient(circle, rgba(160,150,130,.35), rgba(160,150,130,0));
+        filter: blur(6px);
+    }
+    .field-scale {
+        position: absolute; border-radius: 40% 60% 55% 45%;
+        background: rgba(140,130,110,.25);
+        filter: blur(1px);
+    }
+    .field-bubble {
+        position: absolute; border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.55), rgba(200,210,220,.25));
+        border: 1px solid rgba(180,190,200,.3);
+    }
+    .scope-target {
+        position: absolute; width: 32px; height: 32px; cursor: pointer;
+        transform: translate(-50%, -50%);
+    }
+    .scope-target .particle {
+        position: absolute; top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .spore-particle {
+        width: 9px; height: 15px; border-radius: 45%;
+        background: rgba(245,250,255,.72);
+        border: 1px solid rgba(120,140,160,.4);
+        box-shadow: 0 0 3px rgba(180,200,220,.45), inset 0 0 2px rgba(255,255,255,.8);
+        animation: brownian 1.6s ease-in-out infinite;
+    }
+    .debris-particle {
+        width: 16px; height: 16px; border-radius: 35% 65% 55% 45%;
+        background: radial-gradient(circle at 30% 30%, #7a7a7a, #4a4a4a);
+        opacity: .8;
+    }
+    .scope-target::after {
+        content: '✓'; color: #fff; font-size: 15px; font-weight: 800;
+        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
+        transition: transform .25s; z-index: 2;
+    }
+    .scope-target.found { pointer-events: none; }
+    .scope-target.found .spore-particle { animation: none; box-shadow: 0 0 0 3px rgba(44,85,48,.5); }
+    .scope-target.found::after { transform: translate(-50%, -50%) scale(1); }
+    .scope-target.debris.clicked .debris-particle { background: #e74c3c; }
+    .scope-target.debris.clicked::after { content: '✗'; transform: translate(-50%, -50%) scale(1); }
+    @keyframes brownian {
+        0%,100% { transform: translate(-50%, -50%) translate(0, 0); }
+        20% { transform: translate(-50%, -50%) translate(1.5px, -1px); }
+        40% { transform: translate(-50%, -50%) translate(-1px, 1.5px); }
+        60% { transform: translate(-50%, -50%) translate(-1.5px, -1.5px); }
+        80% { transform: translate(-50%, -50%) translate(1px, 1px); }
+    }
+
+    .knob-panel { width: 260px; text-align: center; }
+    .knob-box {
+        display: inline-block; width: 110px; margin: 8px; text-align: center;
+    }
+    .knob {
+        width: 90px; height: 90px; margin: 0 auto 6px; border-radius: 50%;
+        background: conic-gradient(#e9ecef 0deg, #ced4da 360deg);
+        border: 4px solid #495057; position: relative; cursor: grab; touch-action: none;
+        box-shadow: 0 4px 10px rgba(0,0,0,.2);
+    }
+    .knob::after {
+        content: ''; position: absolute; top: 8px; left: 50%; width: 5px; height: 32px;
+        background: #e74c3c; border-radius: 3px; transform: translateX(-50%);
+    }
+    .knob-label { font-weight: 700; font-size: .9rem; }
+    .knob-hint { color: #888; font-size: .8rem; }
+
+    .mag-badge {
+        display: inline-block; background: #343a40; color: #fff; border-radius: 8px;
+        padding: 4px 14px; font-weight: 700; margin-bottom: 8px;
+    }
+    .move-hint {
+        background: #fff8e6; border: 2px solid #f39c12; border-radius: 10px;
+        padding: 10px 14px; font-size: .95rem; margin-top: 10px;
+    }
+
+    /* ---------- Disposal ---------- */
+    .tank {
+        width: 240px; height: 170px; margin: 0 auto; border: 4px solid #6c757d;
+        border-radius: 12px 12px 18px 18px; background: linear-gradient(180deg, #cfe8f5 0%, #7fb8d9 100%);
+        display: flex; align-items: flex-end; justify-content: center; padding-bottom: 12px;
+        cursor: pointer; transition: all .3s; position: relative;
+    }
+    .tank:hover { transform: scale(1.04); box-shadow: 0 8px 20px rgba(0,0,0,.2); }
+    .tank .label { position: absolute; top: 10px; left: 0; right: 0; text-align: center; font-weight: 700; color: #1d3a5f; }
+    .slide-in-tank {
+        width: 90px; height: 60px; background: rgba(255,255,255,.4); border: 2px solid rgba(255,255,255,.8);
+        border-radius: 4px; animation: sink 1.2s forwards;
+    }
+    @keyframes sink { from { transform: translateY(-40px); opacity: 1; } to { transform: translateY(45px); opacity: .35; } }
+
+    .result-box { border-radius: 14px; padding: 18px; margin-top: 16px; }
+    .result-box.good { background: #d4edda; border: 2px solid var(--good); }
+    .result-box.bad { background: #f8d7da; border: 2px solid var(--bad); }
+    .learn-card { background: #fff8e6; border: 2px solid #f39c12; border-radius: 12px; padding: 14px 18px; margin-top: 14px; }
+    footer {
+        background: var(--primary); color: #fff; text-align: center; padding: 24px 16px; margin-top: 50px;
+    }
+    footer img.footer-logo { background: #fff; border-radius: 10px; padding: 6px 14px; height: 52px; margin-bottom: 12px; }
+    footer .muted { opacity: .75; font-size: .9rem; }
+</style>
+</head>
+<body>
+
+<header>
+    <img class="brand" src="tasar_moth_header.jpg" alt="तसर शलभ">
+    <div>
+        <div class="ht">मादा शलभ परीक्षण मार्गदर्शिका</div>
+        <div class="hs">CSB-केंद्रीय तसर अनुसंधान एवं प्रशिक्षण संस्थान, राँची</div>
+    </div>
+</header>
+
+<div class="wrap">
+    <div class="title-block">
+        <h1>मादा शलभ परीक्षण (Mother Moth Examination)</h1>
+        <p>पेब्रिन रोग की जाँच सीखें — कदम दर कदम!</p>
+    </div>
+
+    <div class="steps" id="stepBar"></div>
+    <div class="panel" id="panel"></div>
+</div>
+
+<footer>
+    <img class="footer-logo" src="logo-4.png" alt="CSB-CTRTI लोगो"><br>
+    CSB-केंद्रीय तसर अनुसंधान एवं प्रशिक्षण संस्थान - राँची, झारखंड द्वारा विकसित<br>
+    <span class="muted">रेशम कीट रोग प्रबंधन हेतु</span>
+</footer>
+
+<script>
+/* ================= STATE ================= */
+const STEPS = ['शलभ चयन', 'औज़ार चयन', 'कटाई-पिसाई', 'स्लाइड तैयारी', 'माइक्रोस्कोप', 'निपटान'];
+const REQUIRED_TOOLS = ['कैंची', 'मोर्टार-पेस्टल', 'शीशे की स्लाइड', 'ड्रॉपर (PVS)', 'कवर स्लिप', 'माइक्रोस्कोप'];
+const SLIDE_ICON = `<svg viewBox="0 0 48 48" width="40" height="40"><rect x="4" y="14" width="40" height="20" rx="2" fill="rgba(200,230,255,.5)" stroke="#5a7a8a" stroke-width="2"/></svg>`;
+const COVER_ICON = `<svg viewBox="0 0 48 48" width="40" height="40"><rect x="10" y="16" width="28" height="16" rx="1" fill="rgba(220,240,255,.6)" stroke="#7a9aaa" stroke-width="1.5"/></svg>`;
+const imgIcon = (src, alt) => `<img src="${src}" alt="${alt}" style="width:48px;height:48px;object-fit:contain;border-radius:6px">`;
+
+const TOOLS_BASE = [
+    {name: 'कैंची', icon: '✂️'},
+    {name: 'मोर्टार-पेस्टल', icon: '🥣'},
+    {name: 'शीशे की स्लाइड', icon: SLIDE_ICON},
+    {name: 'ड्रॉपर (PVS)', icon: imgIcon('pvs_bottle.jpg', 'PVS')},
+    {name: 'कवर स्लिप', icon: COVER_ICON},
+    {name: 'माइक्रोस्कोप', icon: '🔬'},
+    {name: 'नैपसैक स्प्रेयर', icon: imgIcon('knapsack_sprayer.jpg', 'Knapsack Sprayer')},
+    {name: 'सेकेटर', icon: imgIcon('secateur.jpg', 'Secateur')},
+    {name: 'नायलॉन जाल', icon: imgIcon('nylon_net.jpg', 'Nylon Net')},
+];
+let TOOLS = shuffle([...TOOLS_BASE]);
+const CUT_STEPS = [
+    'नुकीली कैंची से पेट के 4-7 खंड काटें',
+    'कटा हुआ भाग मोर्टार-पेस्टल में रखें',
+    'पेस्टल से मिश्रण को अच्छी तरह पीसें',
+];
+const SLIDE_STEPS = [
+    'PVS की 1-2 बूंदें स्लाइड पर डालें',
+    'मोर्टार में पिसे हुए नमूने को स्लाइड पर रखें',
+    'नमूने को स्लाइड पर समान रूप से फैलाएँ (स्मीयर)',
+    'कवर स्लिप धीरे से रखें',
+];
+
+// Spore / debris target coordinates in the generated 520x520 microscope field
+const SPORE_TARGETS = [
+    {x: 140, y: 150}, {x: 260, y: 120}, {x: 380, y: 180},
+    {x: 200, y: 300}, {x: 360, y: 340}
+];
+const DEBRIS_TARGETS = [
+    {x: 100, y: 220}, {x: 420, y: 260}, {x: 180, y: 420}, {x: 400, y: 420}
+];
+
+let stage = 0, mothPicked = null, toolsCollected = [], cutIndex = 0,
+    slideIndex = 0, sporesFound = 0, disposed = false;
+
+/* ================= AUDIO ================= */
+let audioCtx = null;
+function initAudio() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+}
+function playSound(type) {
+    initAudio();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    if (type === 'good') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(660, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.1);
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.15);
+    } else {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.25);
+    }
+}
+
+/* ================= HELPERS ================= */
+const panel = document.getElementById('panel');
+function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+function renderSteps() {
+    document.getElementById('stepBar').innerHTML = STEPS.map((s, i) =>
+        `<div class="step-pill ${i === stage ? 'active' : i < stage ? 'done' : ''}">${i + 1}. ${s}</div>`).join('');
+}
+function instruction(html) { return `<div class="instruction">🎓 ${html}</div>`; }
+function nextStage() { stage++; renderSteps(); render(); }
+function feedbackBox(type, html, retryFn, continueFn) {
+    const fb = document.createElement('div');
+    fb.className = 'feedback';
+    fb.innerHTML = `
+        <div class="cloud ${type}">
+            ${type === 'good' ? '✓' : '✗'} ${html}
+        </div>
+        <div class="mt-2">
+            ${retryFn ? `<button class="btn btn-outline" onclick="${retryFn}()">फिर से कोशिश करें</button>` : ''}
+            ${continueFn ? `<button class="btn" onclick="${continueFn}()">आगे बढ़ें →</button>` : ''}
+        </div>`;
+    return fb;
+}
+
+/* ================= MOTH SVG ================= */
+function mothSVG(sex) {
+    const female = sex === 'female';
+    // मादा: भारी शरीर, पतले सीधे एंटीना, हल्के पंख
+    // नर: छोटा शरीर, मोटे पंखदार एंटीना, गहरे पंख
+    const bodyW = female ? 22 : 13;
+    const bodyLen = female ? 50 : 36;
+    const wing = female ? '#c49a6c' : '#a0522d';
+    const wingDark = female ? '#9c6a44' : '#7a3e1a';
+    const bodyCol = female ? '#96703f' : '#7d5a35';
+    const thoraxCol = female ? '#b08050' : '#8f5e32';
+    const antClass = female ? 'ant-female' : 'ant-male';
+    const antennae = female
+        ? `<g class="${antClass}">
+            <path d="M96 26 Q82 10 62 4" stroke="#5b421f" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+            <path d="M104 26 Q118 10 138 4" stroke="#5b421f" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+            <circle cx="62" cy="4" r="3" fill="#5b421f"/><circle cx="138" cy="4" r="3" fill="#5b421f"/>
+           </g>`
+        : `<g class="${antClass}">
+            <path d="M96 26 Q76 6 54 0" stroke="#5b421f" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path d="M104 26 Q124 6 146 0" stroke="#5b421f" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path d="M92 14 l-11 -10 M84 19 l-12 -7 M75 22 l-12 -4 M66 23 l-11 -1 M108 14 l11 -10 M116 19 l12 -7 M125 22 l12 -4 M134 23 l11 -1" stroke="#5b421f" stroke-width="2.6" stroke-linecap="round"/>
+            <circle cx="54" cy="0" r="3.5" fill="#5b421f"/><circle cx="146" cy="0" r="3.5" fill="#5b421f"/>
+           </g>`;
+    return `<svg class="moth-svg" viewBox="0 0 200 150" preserveAspectRatio="xMidYMid meet">
+      <ellipse cx="68" cy="96" rx="${female ? 50 : 40}" ry="${female ? 30 : 24}" fill="${wingDark}" transform="rotate(-18 68 96)"/>
+      <ellipse cx="132" cy="96" rx="${female ? 50 : 40}" ry="${female ? 30 : 24}" fill="${wingDark}" transform="rotate(18 132 96)"/>
+      <ellipse cx="60" cy="54" rx="${female ? 56 : 46}" ry="${female ? 34 : 28}" fill="${wing}" transform="rotate(-22 60 54)"/>
+      <ellipse cx="140" cy="54" rx="${female ? 56 : 46}" ry="${female ? 34 : 28}" fill="${wing}" transform="rotate(22 140 54)"/>
+      <circle cx="56" cy="50" r="7" fill="#3d2b1f"/><circle cx="56" cy="50" r="3" fill="#e8d8b0"/>
+      <circle cx="144" cy="50" r="7" fill="#3d2b1f"/><circle cx="144" cy="50" r="3" fill="#e8d8b0"/>
+      <ellipse cx="100" cy="${78 + (female ? 6 : 0)}" rx="${bodyW}" ry="${bodyLen}" fill="${bodyCol}"/>
+      <ellipse cx="100" cy="42" rx="${female ? 20 : 14}" ry="${female ? 18 : 13}" fill="${thoraxCol}"/>
+      <circle cx="100" cy="30" r="8" fill="#5b421f"/>
+      ${antennae}
+      <path d="M92 80 l-14 12 M108 80 l14 12 M92 94 l-12 14 M108 94 l12 14" stroke="#5b421f" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>`;
+}
+
+/* ---------- चरण 1: मॉथ चयन ---------- */
+function renderSelect() {
+    panel.innerHTML = instruction(
+        '<strong>चरण 1 — मादा शलभ का चयन करें।</strong> पेब्रिन जाँच में ' +
+        'केवल <strong>मादा</strong> शलभ की जाँच की जाती है। पहचानिए — कौन-सा शलभ मादा है?') +
+        '<div class="moth-row">' +
+        `<div class="moth-card" id="mMale" onclick="pickMoth('male')">
+            ${mothSVG('male')}<div class="tag">मॉथ A</div>
+            <small>छोटा शरीर, मोटे पंखदार एंटीना</small></div>` +
+        `<div class="moth-card" id="mFemale" onclick="pickMoth('female')">
+            ${mothSVG('female')}<div class="tag">मॉथ B</div>
+            <small>भारी शरीर, पतले एंटीना</small></div>` +
+        '</div><div id="cloudBox"></div>';
+}
+function pickMoth(sex) {
+    if (mothPicked) return;
+    mothPicked = sex;
+    document.getElementById(sex === 'male' ? 'mMale' : 'mFemale').classList.add('selected');
+    const box = document.getElementById('cloudBox');
+    box.innerHTML = '';
+    if (sex === 'female') {
+        playSound('good');
+        box.appendChild(feedbackBox('good',
+            '<strong>बिल्कुल सही!</strong><br>शलभ B मादा है — भारी शरीर और पतले एंटीना मादा की पहचान हैं। ' +
+            'मादा शलभ परीक्षण में मादा की ही जाँच होती है क्योंकि पेब्रिन रोग माँ से अंडों में जाता है।',
+            null, 'nextStage'));
+    } else {
+        playSound('bad');
+        box.appendChild(feedbackBox('bad',
+            '<strong>यह नर शलभ है!</strong><br>नर शलभ का शरीर छोटा और एंटीना मोटे-पंखदार होते हैं। ' +
+            'मादा शलभ परीक्षण में मादा (भारी शरीर, पतले एंटीना) की जाँच होती है।',
+            'retryMoth', 'nextStage'));
+    }
+}
+function retryMoth() { mothPicked = null; renderSelect(); }
+
+/* ---------- चरण 2: औज़ार चयन ---------- */
+function renderTools() {
+    panel.innerHTML = instruction(
+        '<strong>चरण 2 — जाँच के औज़ार चुनें।</strong> पेब्रिन जाँच के लिए 6 औज़ार चाहिए। ' +
+        'सही औज़ार अपने ट्रे में रखें!') +
+        '<div class="tool-tray" id="toolTray">' + TOOLS.map((t, i) =>
+            `<div class="tool-item ${toolsCollected.includes(t.name) ? 'picked' : ''}" data-i="${i}" onclick="pickTool(${i})">
+                <span class="tool-icon">${t.icon}</span>${t.name}
+            </div>`).join('') + '</div>' +
+        '<div class="exam-tray" id="examTray">' +
+        (toolsCollected.length ? toolsCollected.map(t => `<div class="tool-mini">${t}</div>`).join('')
+                               : '<span style="color:#888">आपका परीक्षण ट्रे — चुने गए औज़ार यहाँ दिखेंगे</span>') +
+        '</div><div class="center mt-3" id="toolMsg"></div>';
+}
+function pickTool(i) {
+    const t = TOOLS[i];
+    const el = document.getElementById('toolTray').children[i];
+    const msg = document.getElementById('toolMsg');
+    if (REQUIRED_TOOLS.includes(t.name)) {
+        if (!toolsCollected.includes(t.name)) {
+            playSound('good');
+            toolsCollected.push(t.name); el.classList.add('picked');
+            document.getElementById('examTray').innerHTML =
+                toolsCollected.map(x => `<div class="tool-mini">${x}</div>`).join('') ||
+                '<span style="color:#888">आपका परीक्षण ट्रे — चुने गए औज़ार यहाँ दिखेंगे</span>';
+        }
+    } else {
+        playSound('bad');
+        el.classList.add('wrong-flash');
+        setTimeout(() => el.classList.remove('wrong-flash'), 450);
+        msg.innerHTML = '';
+        msg.appendChild(feedbackBox('bad',
+            `<strong>${t.name}</strong> की इस जाँच में ज़रूरत नहीं है।`,
+            'renderTools', 'nextStage'));
+        return;
+    }
+    if (toolsCollected.length === REQUIRED_TOOLS.length) {
+        msg.innerHTML = '';
+        msg.appendChild(feedbackBox('good', 'सभी 6 औज़ार तैयार!', null, 'nextStage'));
+    }
+}
+
+/* ---------- चरण 3: कटाई-पिसाई ---------- */
+function renderCut() {
+    const grinding = cutIndex === 2;
+    panel.innerHTML = instruction(
+        `<strong>चरण 3 — कटाई और पिसाई।</strong> क्रम से काम करें: कदम ${cutIndex + 1}/${CUT_STEPS.length} — <strong>${CUT_STEPS[cutIndex]}</strong>`) +
+        `<div class="lab-visual">
+            ${cutIndex === 0
+                ? `<div class="cut-stage">
+                     <div class="cut-moth" id="cutMoth" style="width:180px">${mothSVG('female')}</div>
+                     <div class="cut-zone"></div>
+                     <div class="cut-scissors">✂️</div>
+                     <div class="cut-label">4-7 खंड काटें</div>
+                   </div>`
+                : `<div class="mortar"><div class="mix" style="opacity:${cutIndex >= 1 ? 1 : 0}"></div>
+                     <div class="pestle ${grinding ? 'grind' : ''}"></div></div>`}
+        </div>` +
+        '<div class="prep-actions">' + CUT_STEPS.map((s, i) =>
+            `<button class="prep-btn ${i < cutIndex ? 'done' : ''}" data-i="${i}" onclick="cutClick(${i})">${i + 1}. ${s}</button>`).join('') +
+        '</div><div class="center mt-3" id="cutMsg"></div>';
+}
+function cutClick(i) {
+    const btns = document.querySelectorAll('.prep-btn');
+    const msg = document.getElementById('cutMsg');
+    if (i === cutIndex) {
+        playSound('good');
+        btns[i].classList.add('done');
+        cutIndex++;
+        if (cutIndex === CUT_STEPS.length) {
+            msg.innerHTML = '';
+            msg.appendChild(feedbackBox('good', 'मिश्रण तैयार!', null, 'nextStage'));
+        } else if (cutIndex === 1) {
+            const m = document.getElementById('cutMoth');
+            if (m) m.classList.add('cut');
+            setTimeout(renderCut, 600);
+        } else {
+            setTimeout(renderCut, 600);
+        }
+    } else {
+        playSound('bad');
+        btns[i].classList.add('wrong-flash');
+        setTimeout(() => btns[i].classList.remove('wrong-flash'), 450);
+        msg.innerHTML = '';
+        msg.appendChild(feedbackBox('bad',
+            `पहले यह करें: <strong>${CUT_STEPS[cutIndex]}</strong>`,
+            'renderCut', 'nextStage'));
+    }
+}
+
+/* ---------- चरण 4: स्लाइड तैयारी ---------- */
+function renderSlide() {
+    panel.innerHTML = instruction(
+        `<strong>चरण 4 — स्लाइड तैयार करें।</strong> कदम ${slideIndex + 1}/${SLIDE_STEPS.length} — <strong>${SLIDE_STEPS[slideIndex]}</strong>`) +
+        `<div class="lab-visual">
+            ${slideIndex >= 1 ? '<div class="drop"></div>' : ''}
+            ${slideIndex === 2 ? '<div class="sample-blob"></div>' : ''}
+            ${slideIndex >= 3 ? '<div class="smear"></div>' : ''}
+            ${slideIndex >= 4 ? '<div class="cover-slip hand-coverslip"></div>' : ''}
+        </div>` +
+        '<div class="prep-actions">' + SLIDE_STEPS.map((s, i) =>
+            `<button class="prep-btn ${i < slideIndex ? 'done' : ''}" data-i="${i}" onclick="slideClick(${i})">${i + 1}. ${s}</button>`).join('') +
+        '</div><div class="center mt-3" id="slideMsg"></div>';
+}
+function slideClick(i) {
+    const btns = document.querySelectorAll('.prep-btn');
+    const msg = document.getElementById('slideMsg');
+    if (i === slideIndex) {
+        playSound('good');
+        btns[i].classList.add('done');
+        slideIndex++;
+        if (slideIndex === SLIDE_STEPS.length) {
+            msg.innerHTML = '';
+            msg.appendChild(feedbackBox('good', 'स्लाइड तैयार!', null, 'nextStage'));
+        } else {
+            setTimeout(renderSlide, 600);
+        }
+    } else {
+        playSound('bad');
+        btns[i].classList.add('wrong-flash');
+        setTimeout(() => btns[i].classList.remove('wrong-flash'), 450);
+        msg.innerHTML = '';
+        msg.appendChild(feedbackBox('bad',
+            `पहले यह करें: <strong>${SLIDE_STEPS[slideIndex]}</strong>`,
+            'renderSlide', 'nextStage'));
+    }
+}
+
+/* ---------- चरण 5: माइक्रोस्कोप ---------- */
+let scope = {};
+function renderScope() {
+    sporesFound = 0;
+    panel.innerHTML = instruction(
+        '<strong>चरण 5 — माइक्रोस्कोप से जाँच (15× eyepiece + 40× objective = 600×)।</strong> ' +
+        '1) कोर्स फोकस नॉब से लगभग साफ़ करें, फिर फाइन फोकस नॉब से तीक्ष्ण करें। ' +
+        '2) स्लाइड को हाथ से दाईं से बाईं घुमाकर पूरा क्षेत्र देखें। ' +
+        '3) चावल के दाने जैसे अंडाकार, हिलते हुए (Brownian movement) <strong>पेब्रिन स्पोर</strong> पर क्लिक करें — मलबे से बचें!') +
+        `<div class="scope-wrap">
+            <div>
+                <div class="center"><span class="mag-badge">🔬 15× eyepiece + 40× objective = 600×</span></div>
+                <div class="scope-view" id="scopeView">
+                    <div class="scope-slide" id="scopeSlide"></div>
+                </div>
+                <div class="center move-hint">
+                    💡 स्लाइड को दाईं से बाईं और ऊपर-नीचे खिसकाएँ ताकि हर क्षेत्र जाँचा जा सके।
+                </div>
+            </div>
+            <div class="knob-panel">
+                <div style="font-size:3rem">🔬</div>
+                <div class="knob-box">
+                    <div class="knob" id="coarseKnob" data-type="coarse"></div>
+                    <div class="knob-label">कोर्स फोकस</div>
+                    <div class="knob-hint">बड़ा घुमाव</div>
+                </div>
+                <div class="knob-box">
+                    <div class="knob" id="fineKnob" data-type="fine"></div>
+                    <div class="knob-label">फाइन फोकस</div>
+                    <div class="knob-hint">छोटा घुमाव</div>
+                </div>
+                <div style="margin-top:16px"><button class="btn" id="scopeDone" disabled onclick="nextStage()">जाँच पूरी करें →</button></div>
+                <div class="center mt-2" id="scopeMsg"></div>
+            </div>
+        </div>`;
+
+    const slide = document.getElementById('scopeSlide');
+    const view = document.getElementById('scopeView');
+
+    // Generate microscope field background: smudges, scales, bubbles
+    function addBg(cls, count, minSize, maxSize) {
+        for (let i = 0; i < count; i++) {
+            const el = document.createElement('div');
+            el.className = cls;
+            const s = minSize + Math.random() * (maxSize - minSize);
+            el.style.width = s + 'px';
+            el.style.height = s + 'px';
+            el.style.left = (Math.random() * 480) + 'px';
+            el.style.top = (Math.random() * 480) + 'px';
+            el.style.transform = `rotate(${Math.random()*360}deg)`;
+            slide.appendChild(el);
+        }
+    }
+    addBg('field-smudge', 8, 30, 90);
+    addBg('field-scale', 12, 8, 22);
+    addBg('field-bubble', 6, 10, 28);
+
+    // Place targets
+    SPORE_TARGETS.forEach((p, idx) => {
+        const t = document.createElement('div');
+        t.className = 'scope-target';
+        t.style.left = p.x + 'px';
+        t.style.top = p.y + 'px';
+        t.innerHTML = '<div class="particle spore-particle"></div>';
+        t.addEventListener('mousedown', e => e.stopPropagation());
+        t.addEventListener('touchstart', e => e.stopPropagation(), {passive:false});
+        t.onclick = (e) => {
+            e.stopPropagation();
+            if (!scope.focused) { scopeMsg('पहले माइक्रोस्कोप फोकस करें!', 'bad'); playSound('bad'); return; }
+            if (t.classList.contains('found')) return;
+            t.classList.add('found');
+            playSound('good');
+            sporesFound++;
+            if (sporesFound === SPORE_TARGETS.length) {
+                scopeMsg('सभी 5 स्पोर मिले! यह शलभ <strong>पेब्रिन संक्रमित</strong> है।', 'good');
+                document.getElementById('scopeDone').disabled = false;
+            }
+        };
+        slide.appendChild(t);
+    });
+    DEBRIS_TARGETS.forEach(p => {
+        const d = document.createElement('div');
+        d.className = 'scope-target debris';
+        d.style.left = p.x + 'px';
+        d.style.top = p.y + 'px';
+        d.innerHTML = '<div class="particle debris-particle"></div>';
+        d.addEventListener('mousedown', e => e.stopPropagation());
+        d.addEventListener('touchstart', e => e.stopPropagation(), {passive:false});
+        d.onclick = (e) => {
+            e.stopPropagation();
+            if (!scope.focused) { scopeMsg('पहले माइक्रोस्कोप फोकस करें!', 'bad'); playSound('bad'); return; }
+            if (d.classList.contains('clicked')) return;
+            d.classList.add('clicked');
+            playSound('bad');
+            const box = document.getElementById('scopeMsg');
+            box.innerHTML = '';
+            box.appendChild(feedbackBox('bad',
+                'यह तो सिर्फ़ मलबा (debris) है, पेब्रिन स्पोर नहीं!',
+                'clearScopeMsg', 'nextStage'));
+        };
+        slide.appendChild(d);
+    });
+
+    // Drag slide
+    scope = { x: -100, y: -100, w: 520, h: 520, focused: false, dragging: false };
+    updateSlidePos();
+    let start = {};
+    function startDrag(e) {
+        e.preventDefault();
+        scope.dragging = true;
+        const ev = e.touches ? e.touches[0] : e;
+        start = { x: ev.clientX - scope.x, y: ev.clientY - scope.y };
+    }
+    function moveDrag(e) {
+        if (!scope.dragging) return;
+        const ev = e.touches ? e.touches[0] : e;
+        scope.x = ev.clientX - start.x;
+        scope.y = ev.clientY - start.y;
+        clampSlide();
+        updateSlidePos();
+    }
+    function endDrag() { scope.dragging = false; }
+    view.addEventListener('mousedown', startDrag);
+    window.addEventListener('mousemove', moveDrag);
+    window.addEventListener('mouseup', endDrag);
+    view.addEventListener('touchstart', startDrag, {passive:false});
+    window.addEventListener('touchmove', moveDrag, {passive:false});
+    window.addEventListener('touchend', endDrag);
+
+    // Knobs
+    initKnob('coarseKnob', 'coarse', 225);
+    initKnob('fineKnob', 'fine', 135);
+    updateFocus();
+}
+function clampSlide() {
+    const vw = 320, vh = 320;
+    scope.x = Math.min(0, Math.max(scope.x, vw - scope.w));
+    scope.y = Math.min(0, Math.max(scope.y, vh - scope.h));
+}
+function updateSlidePos() {
+    const slide = document.getElementById('scopeSlide');
+    if (slide) slide.style.transform = `translate(${scope.x}px, ${scope.y}px)`;
+}
+function initKnob(id, type, startAngle) {
+    const knob = document.getElementById(id);
+    let active = false, startA = 0, startV = 0;
+    scope[type] = startAngle;
+    knob.style.transform = `rotate(${startAngle}deg)`;
+    function setAngle(e) {
+        const rect = knob.getBoundingClientRect();
+        const cx = rect.left + rect.width/2, cy = rect.top + rect.height/2;
+        const ev = e.touches ? e.touches[0] : e;
+        const dx = ev.clientX - cx, dy = ev.clientY - cy;
+        let ang = Math.atan2(dy, dx) * 180 / Math.PI + 90;
+        if (ang < 0) ang += 360;
+        return ang;
+    }
+    knob.addEventListener('mousedown', e => { active = true; startA = setAngle(e); startV = scope[type]; });
+    knob.addEventListener('touchstart', e => { active = true; startA = setAngle(e); startV = scope[type]; }, {passive:false});
+    window.addEventListener('mousemove', e => {
+        if (!active) return;
+        let ang = setAngle(e);
+        let diff = ang - startA;
+        if (diff > 180) diff -= 360;
+        if (diff < -180) diff += 360;
+        scope[type] = Math.max(0, Math.min(360, startV + diff));
+        knob.style.transform = `rotate(${scope[type]}deg)`;
+        updateFocus();
+    });
+    window.addEventListener('touchmove', e => {
+        if (!active) return;
+        let ang = setAngle(e);
+        let diff = ang - startA;
+        if (diff > 180) diff -= 360;
+        if (diff < -180) diff += 360;
+        scope[type] = Math.max(0, Math.min(360, startV + diff));
+        knob.style.transform = `rotate(${scope[type]}deg)`;
+        updateFocus();
+    }, {passive:false});
+    window.addEventListener('mouseup', () => active = false);
+    window.addEventListener('touchend', () => active = false);
+}
+function updateFocus() {
+    const coarse = scope.coarse || 225;
+    const fine = scope.fine || 135;
+    const coarseErr = Math.abs(coarse - 270) / 360;
+    const fineErr = Math.abs(fine - 180) / 360;
+    const err = coarseErr * 12 + fineErr * 4;
+    const slide = document.getElementById('scopeSlide');
+    if (slide) slide.style.filter = `blur(${Math.max(0, err)}px)`;
+    scope.focused = err < 1.6;
+}
+function scopeMsg(html, type) {
+    const box = document.getElementById('scopeMsg');
+    box.innerHTML = `<div class="cloud ${type}">${type === 'good' ? '✓' : '✗'} ${html}</div>`;
+}
+function clearScopeMsg() { document.getElementById('scopeMsg').innerHTML = ''; }
+
+/* ---------- चरण 6: निपटान ---------- */
+function renderDispose() {
+    const positive = sporesFound > 0;
+    panel.innerHTML = instruction(
+        `<strong>चरण 6 — अंतिम निपटान।</strong> जाँच में <strong>${sporesFound}</strong> पेब्रिन स्पोर मिले। ` +
+        (positive
+            ? 'पेब्रिन संक्रमित स्लाइड को <strong>एथनॉल/प्रोपेनॉल घोल के टैंक</strong> में डुबोकर नष्ट कर दें — रोग फैलने से रोकने के लिए!'
+            : 'स्पोर नहीं मिले — स्लाइड <strong>सुरक्षित रखें</strong> और अपने औज़ार साफ़ करें।')) +
+        (positive
+            ? `<div class="center">
+                 <p>👇 स्लाइड को टैंक में डुबोएँ (क्लिक करें):</p>
+                 <div class="tank" id="tank" onclick="disposeSlide(true)">
+                     <div class="label">एथनॉल / प्रोपेनॉल घोल का टैंक 🧪</div>
+                 </div>
+                 <div class="mt-2"><button class="btn btn-outline" onclick="nextStage()">आगे बढ़ें →</button></div>
+               </div>`
+            : `<div class="center">
+                 <p>✅ स्लाइड साफ़ है — उसे सुरक्षित रखें:</p>
+                 <div class="lab-visual"><div class="cover-slip"></div></div>
+                 <button class="btn" onclick="finishGame(false)">स्लाइड सुरक्षित रखें ✔</button>
+                 <button class="btn btn-outline" onclick="disposeSlide(false)">टैंक में डुबोएँ</button>
+               </div>`) +
+        '<div id="finalBox"></div>';
+}
+function disposeSlide(should) {
+    if (should) {
+        if (disposed) return;
+        disposed = true;
+        playSound('good');
+        document.getElementById('tank').innerHTML =
+            '<div class="label">एथनॉल / प्रोपेनॉल घोल का टैंक 🧪</div><div class="slide-in-tank"></div>';
+        setTimeout(() => finishGame(true), 1300);
+    } else {
+        playSound('bad');
+        const fb = document.getElementById('finalBox');
+        fb.innerHTML = '';
+        fb.appendChild(feedbackBox('bad',
+            'यह स्लाइड पेब्रिन-मुक्त है, इसलिए टैंक में नहीं डालनी चाहिए।',
+            'renderDispose', 'finishGameFalse'));
+    }
+}
+function finishGameFalse() { finishGame(false); }
+function finishGame(discarded) {
+    const box = document.getElementById('finalBox');
+    box.innerHTML = `
+        <div class="result-box ${discarded ? 'good' : 'good'}">
+            <h3>${discarded ? '✔ सही निपटान!' : '✔ सही निपटान!'}</h3>
+            <p>${discarded
+                ? 'पेब्रिन संक्रमित स्लाइड को एथनॉल/प्रोपेनॉल घोल में डुबोकर नष्ट कर दिया गया — इस तरह रोग आगे नहीं फैलता।'
+                : 'स्लाइड साफ़ थी, इसलिए उसे सुरक्षित रखा गया।'}</p>
+        </div>
+        <div class="center" style="margin-top:20px">
+            <h2>🎉 आपने मादा शलभ जाँच सीख ली!</h2>
+        </div>
+        <div class="learn-card">
+            <h4>💡 मादा शलभ परीक्षण क्यों ज़रूरी है?</h4>
+            <ul style="margin:6px 0 0 18px; padding:0">
+                <li>पेब्रिन (<em>Nosema sps.</em>) सबसे खतरनाक रेशम कीट रोग है — यह अंडों के माध्यम से माँ से बच्चों तक पहुँचता है।</li>
+                <li>अंडे रखने से पहले मादा शलभ की जाँच करने से रोग अगली पीढ़ी में नहीं फैलता।</li>
+                <li>सही क्रम अपनाएँ: मादा चुनें → औज़ार इकट्ठा करें → 4-7 खंड काटें → मोर्टार में कुचलें → PVS मिलाएँ → स्लाइड पर स्मीयर → कवर स्लिप → कोर्स फोकस → फाइन फोकस → स्लाइड दाईं-बाईं घुमाएँ → पेब्रिन स्पोर खोजें → संक्रमित स्लाइड एथनॉल/प्रोपेनॉल टैंक में नष्ट करें।</li>
+            </ul>
+        </div>
+        <div class="center" style="margin-top:16px"><button class="btn" onclick="location.reload()">🔄 फिर से सीखें</button></div>`;
+}
+
+/* ---------- ROUTER ---------- */
+function render() {
+    [renderSelect, renderTools, renderCut, renderSlide, renderScope, renderDispose][stage]();
+}
+renderSteps();
+render();
+</script>
+</body>
+</html>

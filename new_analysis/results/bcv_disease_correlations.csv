@@ -1,0 +1,58 @@
+Disease,BCV,Description,Correlation,P_value,Significant
+Pebrine,BIO1,Annual Mean Temperature,-0.29920183066074046,0.14623849901244115,No
+Pebrine,BIO2,Mean Diurnal Range,0.6431445278493799,0.0005247578836663784,Yes
+Pebrine,BIO3,Isothermality,0.6431445278493799,0.0005247578836663784,Yes
+Pebrine,BIO4,Temperature Seasonality,,,No
+Pebrine,BIO5,Max Temperature of Warmest Month,0.29840750907275243,0.14736466254031289,No
+Pebrine,BIO6,Min Temperature of Coldest Month,-0.6556843089319719,0.00037340102107539716,Yes
+Pebrine,BIO7,Annual Temperature Range,0.6431445278493799,0.0005247578836663784,Yes
+Pebrine,BIO8,Mean Temperature of Wettest Quarter,-0.3408666702610648,0.09542619127368152,No
+Pebrine,BIO9,Mean Temperature of Driest Quarter,-0.17272473422596768,0.4090073114523242,No
+Pebrine,BIO10,Mean Temperature of Warmest Quarter,-0.30766771160015227,0.13461541677040828,No
+Pebrine,BIO11,Mean Temperature of Coldest Quarter,-0.3310440500391443,0.1060006372465564,No
+Pebrine,BIO12,Annual Precipitation,0.2560587580752597,0.21665487598093078,No
+Pebrine,BIO13,Precipitation of Wettest Month,0.2560587580752597,0.21665487598093078,No
+Pebrine,BIO14,Precipitation of Driest Month,-0.2560587580752598,0.21665487598093078,No
+Pebrine,BIO15,Precipitation Seasonality,,,No
+Pebrine,BIO16,Precipitation of Wettest Quarter,-0.0015019111992106947,0.9943150624517972,No
+Pebrine,BIO17,Precipitation of Driest Quarter,0.4018810839116099,0.04643732444542865,Yes
+Pebrine,BIO18,Precipitation of Warmest Quarter,-0.1643961194823315,0.43229922576676066,No
+Pebrine,BIO19,Precipitation of Coldest Quarter,0.32208575631102765,0.11637850355134854,No
+Viriosis,BIO1,Annual Mean Temperature,0.11617162972249452,0.5802644406584195,No
+Viriosis,BIO2,Mean Diurnal Range,0.6436254673672909,0.0005180969373040945,Yes
+Viriosis,BIO3,Isothermality,0.643625467367291,0.0005180969373040912,Yes
+Viriosis,BIO4,Temperature Seasonality,,,No
+Viriosis,BIO5,Max Temperature of Warmest Month,0.5839541395155126,0.0021783521632560395,Yes
+Viriosis,BIO6,Min Temperature of Coldest Month,-0.39239432874824376,0.052361234008561304,No
+Viriosis,BIO7,Annual Temperature Range,0.6436254673672909,0.0005180969373040945,Yes
+Viriosis,BIO8,Mean Temperature of Wettest Quarter,0.02708274924296196,0.8977499298813364,No
+Viriosis,BIO9,Mean Temperature of Driest Quarter,0.0577031927786371,0.7841052528575176,No
+Viriosis,BIO10,Mean Temperature of Warmest Quarter,0.11511910302853035,0.5837231988543233,No
+Viriosis,BIO11,Mean Temperature of Coldest Quarter,-0.2252216338029918,0.27905768906812667,No
+Viriosis,BIO12,Annual Precipitation,0.6283344958509246,0.0007697355520419171,Yes
+Viriosis,BIO13,Precipitation of Wettest Month,0.6283344958509246,0.0007697355520419171,Yes
+Viriosis,BIO14,Precipitation of Driest Month,-0.6283344958509245,0.0007697355520419171,Yes
+Viriosis,BIO15,Precipitation Seasonality,,,No
+Viriosis,BIO16,Precipitation of Wettest Quarter,0.2734138830166687,0.18601984357103946,No
+Viriosis,BIO17,Precipitation of Driest Quarter,0.6355319261847882,0.0006405398529503976,Yes
+Viriosis,BIO18,Precipitation of Warmest Quarter,0.2198081899722628,0.291080162791981,No
+Viriosis,BIO19,Precipitation of Coldest Quarter,0.5795842485150746,0.0023943861154046096,Yes
+Bacteriosis,BIO1,Annual Mean Temperature,-0.29920183066074046,0.14623849901244115,No
+Bacteriosis,BIO2,Mean Diurnal Range,0.6431445278493799,0.0005247578836663784,Yes
+Bacteriosis,BIO3,Isothermality,0.6431445278493799,0.0005247578836663784,Yes
+Bacteriosis,BIO4,Temperature Seasonality,,,No
+Bacteriosis,BIO5,Max Temperature of Warmest Month,0.29840750907275243,0.14736466254031289,No
+Bacteriosis,BIO6,Min Temperature of Coldest Month,-0.6556843089319719,0.00037340102107539716,Yes
+Bacteriosis,BIO7,Annual Temperature Range,0.6431445278493799,0.0005247578836663784,Yes
+Bacteriosis,BIO8,Mean Temperature of Wettest Quarter,-0.3408666702610648,0.09542619127368152,No
+Bacteriosis,BIO9,Mean Temperature of Driest Quarter,-0.17272473422596768,0.4090073114523242,No
+Bacteriosis,BIO10,Mean Temperature of Warmest Quarter,-0.30766771160015227,0.13461541677040828,No
+Bacteriosis,BIO11,Mean Temperature of Coldest Quarter,-0.3310440500391443,0.1060006372465564,No
+Bacteriosis,BIO12,Annual Precipitation,0.2560587580752597,0.21665487598093078,No
+Bacteriosis,BIO13,Precipitation of Wettest Month,0.2560587580752597,0.21665487598093078,No
+Bacteriosis,BIO14,Precipitation of Driest Month,-0.2560587580752598,0.21665487598093078,No
+Bacteriosis,BIO15,Precipitation Seasonality,,,No
+Bacteriosis,BIO16,Precipitation of Wettest Quarter,-0.0015019111992106947,0.9943150624517972,No
+Bacteriosis,BIO17,Precipitation of Driest Quarter,0.4018810839116099,0.04643732444542865,Yes
+Bacteriosis,BIO18,Precipitation of Warmest Quarter,-0.1643961194823315,0.43229922576676066,No
+Bacteriosis,BIO19,Precipitation of Coldest Quarter,0.32208575631102765,0.11637850355134854,No

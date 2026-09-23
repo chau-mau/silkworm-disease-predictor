@@ -1,0 +1,26 @@
+Date,PB,VR,BT,PB_binary,VR_binary,BT_binary,Temp_Max,Temp_Min,Humidity,Temp_Mean,THI,Stress_Level
+2025-10-07,yes,yes,yes,1,1,1,29.8,21.0,75.0,25.4,75.0085,Moderate Stress
+2025-10-08,yes,yes,yes,1,1,1,28.7,21.0,80.0,24.85,74.6697,Moderate Stress
+2025-10-09,yes,yes,yes,1,1,1,28.5,23.0,79.7,25.75,76.0779225,Moderate Stress
+2025-10-10,yes,yes,yes,1,1,1,29.0,20.0,75.5,24.5,73.661025,Moderate Stress
+2025-10-11,yes,yes,yes,1,1,1,28.0,19.0,70.6,23.5,71.66429000000001,Mild Stress
+2025-10-12,yes,yes,yes,1,1,1,29.0,21.0,78.0,25.0,74.701,Moderate Stress
+2025-10-13,yes,yes,yes,1,1,1,28.0,20.0,65.8,24.0,71.96468,Mild Stress
+2025-10-14,yes,yes,yes,1,1,1,28.0,18.0,71.1,23.0,70.95217000000001,Mild Stress
+2025-10-15,yes,yes,yes,1,1,1,28.0,17.0,75.0,22.5,70.50625,Mild Stress
+2025-10-16,yes,yes,yes,1,1,1,28.0,18.0,73.6,23.0,71.16392,Mild Stress
+2025-10-17,yes,yes,yes,1,1,1,28.0,18.0,75.0,23.0,71.2825,Mild Stress
+2025-10-18,no,yes,no,0,1,0,28.0,18.0,80.1,23.0,71.71447,Mild Stress
+2025-10-19,no,yes,no,0,1,0,29.0,19.0,86.6,24.0,73.93236,Moderate Stress
+2025-10-20,no,yes,no,0,1,0,30.0,20.0,80.1,25.0,74.92045,Moderate Stress
+2025-10-21,no,yes,no,0,1,0,29.0,21.0,75.0,25.0,74.3875,Moderate Stress
+2025-10-22,no,yes,no,0,1,0,28.0,20.0,75.5,24.0,72.8823,Moderate Stress
+2025-10-23,no,yes,no,0,1,0,27.0,23.0,69.6,25.0,73.8232,Moderate Stress
+2025-10-24,no,no,no,0,0,0,28.0,21.0,61.0,24.5,72.21754999999999,Moderate Stress
+2025-10-25,no,no,no,0,0,0,29.0,21.0,72.4,25.0,74.1158,Moderate Stress
+2025-10-26,no,no,no,0,0,0,24.0,21.0,70.8,22.5,70.1713,Mild Stress
+2025-10-27,no,no,no,0,0,0,26.0,25.0,79.2,25.5,75.62344,Moderate Stress
+2025-10-28,no,no,no,0,0,0,27.0,26.0,80.5,26.5,77.372675,Moderate Stress
+2025-10-29,no,no,no,0,0,0,27.0,26.0,60.5,26.5,74.985675,Moderate Stress
+2025-10-30,no,no,no,0,0,0,27.0,26.0,60.7,26.5,75.009545,Moderate Stress
+2025-10-31,no,no,no,0,0,0,25.0,23.0,63.7,24.0,71.76602,Mild Stress

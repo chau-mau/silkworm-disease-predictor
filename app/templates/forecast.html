@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block title %}7-Day Forecast - Silkworm Disease Predictor{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-10 mx-auto">
+        <div class="text-center mb-4">
+            <h1 class="display-5 fw-bold text-primary">7-Day Disease Risk Forecast</h1>
+            <p class="lead text-muted">
+                Live weather forecast for Ranchi (23.34°N, 85.31°E) from public-domain sources
+                (Open-Meteo / NASA POWER), with ML-based Virosis &amp; Bacteriosis risk for each day
+            </p>
+            <button class="btn btn-primary" id="fcBtn" onclick="loadForecast()">
+                <i class="fas fa-sync-alt me-2"></i>Refresh Forecast
+            </button>
+        </div>
+
+        <div class="loading-spinner text-center mt-3">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2 text-muted">Fetching live forecast...</p>
+        </div>
+
+        <!-- Error alert -->
+        <div id="fcError" class="alert alert-danger" style="display:none;"></div>
+
+        <!-- Results -->
+        <div id="fcResults" style="display:none;">
+            <!-- Summary alert -->
+            <div id="fcAlert"></div>
+
+            <!-- Risk trend chart -->
+            <div class="card mb-4">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-3"><i class="fas fa-chart-line me-2 text-primary"></i>Disease Risk Trend</h5>
+                    <canvas id="fcChart" height="110"></canvas>
+                </div>
+            </div>
+
+            <!-- Daily cards -->
+            <h5 class="mb-3"><i class="fas fa-calendar-alt me-2 text-primary"></i>Daily Breakdown</h5>
+            <div id="fcDays"></div>
+
+            <p class="text-muted small mt-3">
+                <i class="fas fa-database me-1"></i>
+                Weather source: <span id="fcSource">—</span> ·
+                THI computed internally (NRC 1971) ·
+                Predictions use weather-only features (Tmax, Tmin, Humidity, THI, Wind Speed)
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const DISEASE_COLORS = { Virosis: '#3498DB', Bacteriosis: '#F39C12' };
+const RISK_BADGE = { 'Low': 'success', 'Moderate': 'warning', 'High': 'warning', 'Very High': 'danger' };
+let fcChart = null;
+
+async function loadForecast() {
+    document.querySelector('.loading-spinner').style.display = 'block';
+    document.getElementById('fcError').style.display = 'none';
+    document.getElementById('fcResults').style.display = 'none';
+    document.getElementById('fcBtn').disabled = true;
+
+    try {
+        const response = await fetch('/api/forecast', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ days: 7 })
+        });
+        const data = await response.json();
+        if (data.success) {
+            displayForecast(data);
+        } else {
+            showError(data.error || 'Forecast unavailable');
+        }
+    } catch (e) {
+        showError(e.message);
+    } finally {
+        document.querySelector('.loading-spinner').style.display = 'none';
+        document.getElementById('fcBtn').disabled = false;
+    }
+}
+
+function showError(msg) {
+    const el = document.getElementById('fcError');
+    el.textContent = 'Error fetching forecast: ' + msg;
+    el.style.display = 'block';
+}
+
+function displayForecast(data) {
+    const days = data.daily;
+    document.getElementById('fcResults').style.display = 'block';
+    document.getElementById('fcSource').textContent = days[0].source;
+
+    // Alert for highest-risk day
+    let worst = null, worstScore = -1;
+    days.forEach(d => {
+        const score = Math.max(...Object.values(d.predictions).map(p => p.probability));
+        if (score > worstScore) { worstScore = score; worst = d; }
+    });
+    const alertEl = document.getElementById('fcAlert');
+    if (worstScore >= 40) {
+        const diseases = Object.entries(worst.predictions)
+            .filter(([, p]) => p.probability >= 40)
+            .map(([k, p]) => `${k} (${p.probability}%)`).join(', ');
+        alertEl.innerHTML = `<div class="alert alert-warning fade-in">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            <strong>Highest risk: ${worst.date}</strong> — ${diseases}.
+            Consider preventive measures (sanitation, humidity control, ventilation).</div>`;
+    } else {
+        alertEl.innerHTML = `<div class="alert alert-success fade-in">
+            <i class="fas fa-check-circle me-2"></i>
+            Low disease risk expected over the next ${days.length} days.</div>`;
+    }
+
+    // Chart
+    const ctx = document.getElementById('fcChart').getContext('2d');
+    if (fcChart) fcChart.destroy();
+    fcChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: days.map(d => d.date),
+            datasets: Object.keys(DISEASE_COLORS).map(disease => ({
+                label: disease,
+                data: days.map(d => d.predictions[disease].probability),
+                borderColor: DISEASE_COLORS[disease],
+                backgroundColor: DISEASE_COLORS[disease] + '33',
+                tension: 0.3, fill: false, pointRadius: 4
+            }))
+        },
+        options: {
+            scales: {
+                y: { min: 0, max: 100, title: { display: true, text: 'Disease Risk (%)' } },
+                x: { title: { display: true, text: 'Date' } }
+            },
+            plugins: { legend: { position: 'top' } }
+        }
+    });
+
+    // Daily cards
+    document.getElementById('fcDays').innerHTML = days.map(d => {
+        const dayName = new Date(d.date + 'T00:00:00').toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
+        const badges = Object.entries(d.predictions).map(([disease, p]) =>
+            `<span class="badge bg-${RISK_BADGE[p.risk_level]} me-1 mb-1">${disease}: ${p.probability}%</span>`
+        ).join('');
+        const maxRisk = Math.max(...Object.values(d.predictions).map(p => p.probability));
+        const cardClass = maxRisk >= 60 ? 'risk-very-high' : maxRisk >= 40 ? 'risk-high' : maxRisk >= 20 ? 'risk-moderate' : 'risk-low';
+        return `
+        <div class="card mb-2 ${cardClass}">
+            <div class="card-body py-3">
+                <div class="row align-items-center">
+                    <div class="col-md-2 col-12 mb-2 mb-md-0">
+                        <div class="fw-bold">${dayName}</div>
+                        <small class="text-muted">${d.date}</small>
+                    </div>
+                    <div class="col-md-4 col-6">
+                        <i class="fas fa-temperature-high text-danger"></i> ${d.tmax.toFixed(1)}°C /
+                        <i class="fas fa-temperature-low text-primary"></i> ${d.tmin.toFixed(1)}°C<br>
+                        <i class="fas fa-droplet text-info"></i> ${d.humidity.toFixed(0)}% RH
+                        <i class="fas fa-wind ms-2 text-secondary"></i> ${d.wind_speed.toFixed(1)} m/s
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <i class="fas fa-cloud-rain text-primary"></i> ${d.rainfall != null ? d.rainfall.toFixed(1) + ' mm' : '—'}<br>
+                        <span class="badge bg-dark">THI ${d.thi.toFixed(1)}</span>
+                    </div>
+                    <div class="col-md-3 col-12 mt-2 mt-md-0">${badges}</div>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+
+    document.getElementById('fcResults').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Auto-load on page visit
+loadForecast();
+</script>
+{% endblock %}

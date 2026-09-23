@@ -1,0 +1,55 @@
+- generic [active] [ref=f2e1]:
+  - banner [ref=f2e2]:
+    - img "तसर रेशम कीट" [ref=f2e3]
+    - generic [ref=f2e4]:
+      - generic [ref=f2e5]: मदर मॉथ परीक्षण खेल
+      - generic [ref=f2e6]: CSB-केंद्रीय तसर अनुसंधान एवं प्रशिक्षण संस्थान, राँची
+  - generic [ref=f2e7]:
+    - generic [ref=f2e8]:
+      - heading "🦋 मदर मॉथ परीक्षण (Mother Moth Examination)" [level=1] [ref=f2e9]
+      - paragraph [ref=f2e10]: पेब्रिन रोग की जाँच सीखें — कदम दर कदम!
+      - generic [ref=f2e11]: "⭐ अंक: 10"
+    - generic [ref=f2e12]:
+      - generic [ref=f2e67]: 1. मॉथ चयन
+      - generic [ref=f2e68]: 2. औज़ार चयन
+      - generic [ref=f2e69]: 3. कटाई-पिसाई
+      - generic [ref=f2e70]: 4. स्लाइड तैयारी
+      - generic [ref=f2e71]: 5. माइक्रोस्कोप
+      - generic [ref=f2e72]: 6. निपटान
+    - generic [ref=f2e19]:
+      - generic [ref=f2e73]:
+        - text: 🎓
+        - strong [ref=f2e74]: चरण 2 — जाँच के औज़ार चुनें।
+        - text: पेब्रिन जाँच के लिए 6 औज़ार चाहिए। सही औज़ार अपने ट्रे में रखें!
+      - generic [ref=f2e75]:
+        - generic [ref=f2e76] [cursor=pointer]:
+          - generic [ref=f2e77]: ✂️
+          - text: कैंची
+        - generic [ref=f2e78] [cursor=pointer]:
+          - generic [ref=f2e79]: 🥣
+          - text: मोर्टार-पेस्टल
+        - generic [ref=f2e80] [cursor=pointer]:
+          - generic [ref=f2e81]: 🪟
+          - text: शीशे की स्लाइड
+        - generic [ref=f2e82] [cursor=pointer]:
+          - generic [ref=f2e83]: 💧
+          - text: ड्रॉपर (PVS)
+        - generic [ref=f2e84] [cursor=pointer]:
+          - generic [ref=f2e85]: 🔲
+          - text: कवर स्लिप
+        - generic [ref=f2e86] [cursor=pointer]:
+          - generic [ref=f2e87]: 🔬
+          - text: माइक्रोस्कोप
+        - generic [ref=f2e88] [cursor=pointer]:
+          - generic [ref=f2e89]: 🧴
+          - text: स्प्रे बोतल
+        - generic [ref=f2e90] [cursor=pointer]:
+          - generic [ref=f2e91]: 🕸️
+          - text: जाल
+        - generic [ref=f2e92] [cursor=pointer]:
+          - generic [ref=f2e93]: 🖌️
+          - text: पेंट ब्रश
+      - generic [ref=f2e94]: आपका परीक्षण ट्रे — चुने गए औज़ार यहाँ दिखेंगे
+  - contentinfo [ref=f2e59]:
+    - img "CSB-CTRTI लोगो" [ref=f2e60]
+    - text: CSB-केंद्रीय तसर अनुसंधान एवं प्रशिक्षण संस्थान - राँची, झारखंड द्वारा विकसित रेशम कीट रोग अनुसंधान हेतु

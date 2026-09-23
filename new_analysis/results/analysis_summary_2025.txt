@@ -1,0 +1,67 @@
+================================================================================
+SILKWORM DISEASE AND THI CORRELATION ANALYSIS - SUMMARY
+2025 DATA
+================================================================================
+
+Study Location: Ranchi, Jharkhand, India
+Coordinates: 23.3441°N, 85.3096°E
+Study Period: 2025-10-07 to 2025-10-31
+Total Observations: 25 days
+
+================================================================================
+DISEASE DEFINITIONS
+================================================================================
+PB - Pebrine
+VR - Viriosis
+BT - Bacteriosis
+
+================================================================================
+KEY FINDINGS
+================================================================================
+
+Pebrine (PB):
+  Incidence: 11/25 days
+  Correlation with THI: r = -0.2365
+  P-value: 0.255022
+  Statistical Significance: No
+  Mean THI (disease present): 72.88
+  Mean THI (disease absent): 73.78
+  Difference: -0.90
+
+Viriosis (VR):
+  Incidence: 17/25 days
+  Correlation with THI: r = -0.1900
+  P-value: 0.362964
+  Statistical Significance: No
+  Mean THI (disease present): 73.14
+  Mean THI (disease absent): 73.91
+  Difference: -0.77
+
+Bacteriosis (BT):
+  Incidence: 11/25 days
+  Correlation with THI: r = -0.2365
+  P-value: 0.255022
+  Statistical Significance: No
+  Mean THI (disease present): 72.88
+  Mean THI (disease absent): 73.78
+  Difference: -0.90
+
+================================================================================
+CLIMATE STATISTICS
+================================================================================
+
+THI (Thermo-Humidity Index):
+  Mean: 73.38
+  Standard Deviation: 1.93
+  Range: 70.17 - 77.37
+
+Temperature:
+  Mean: 24.46°C
+  Standard Deviation: 1.22°C
+  Range: 22.50°C - 26.50°C
+
+Relative Humidity:
+  Mean: 73.40%
+  Standard Deviation: 6.89%
+  Range: 60.50% - 86.60%
+

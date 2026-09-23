@@ -1,0 +1,77 @@
+================================================================================
+REANALYSIS OF SCANNED PDF DATA - OCTOBER 2025
+================================================================================
+
+DATA SOURCE:
+  - Data_scanned.pdf (5 pages)
+  - Data_scanned_2.pdf (4 pages)
+  - Total records: 81
+  - Date range: 2025-10-07 to 2025-10-31
+
+PLOTS INCLUDED:
+  Plot 5: 10x10 spacing, 3rd instar
+  Plot 7: 6x10 spacing, 1st instar
+  Plot 13: 6x6 spacing, 3rd instar
+  Plot 14: 6x10 spacing, 3rd instar
+  Plot 17: 8x8 spacing, 02-03-2005 instar
+  Plot 18: 12x12 spacing, 03-04-2005 instar
+  Plot 20: 6x6 spacing, 5th instar
+  Plot 21: 8x8 spacing, 01-03-2005 instar
+
+================================================================================
+CLIMATE STATISTICS (NRC THI Formula)
+================================================================================
+
+THI Mean: 74.97
+THI Range: 69.77 - 79.82
+Temperature Mean: 25.23°C
+Humidity Mean: 76.99%
+
+Stress Level Distribution:
+  Moderate Stress: 72 (88.9%)
+  Mild Stress: 8 (9.9%)
+  No Stress: 1 (1.2%)
+
+================================================================================
+DISEASE STATISTICS
+================================================================================
+
+Pebrine:
+  Total cases: 11
+  Mean per observation: 0.136
+
+Virosis:
+  Total cases: 23
+  Mean per observation: 0.284
+
+Bacteriosis:
+  Total cases: 11
+  Mean per observation: 0.136
+
+Muscardine:
+  Total cases: 11
+  Mean per observation: 0.136
+
+================================================================================
+CORRELATION WITH THI
+================================================================================
+
+Pebrine:
+  Correlation: 0.0116
+  P-value: 0.918149 ns
+
+Virosis:
+  Correlation: 0.1511
+  P-value: 0.178134 ns
+
+Bacteriosis:
+  Correlation: 0.0116
+  P-value: 0.918149 ns
+
+Muscardine:
+  Correlation: 0.0116
+  P-value: 0.918149 ns
+
+================================================================================
+END OF REPORT
+================================================================================

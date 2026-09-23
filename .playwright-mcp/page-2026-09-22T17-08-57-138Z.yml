@@ -1,0 +1,192 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "Tasar silkworm Silkworm Disease Predictor" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Tasar silkworm" [ref=e5]
+        - generic [ref=e6]: Silkworm Disease Predictor
+      - list [ref=e8]:
+        - listitem [ref=e9]:
+          - link " Home" [ref=e10] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e11]: 
+            - text: Home
+        - listitem [ref=e12]:
+          - link " Model Info" [ref=e13] [cursor=pointer]:
+            - /url: /model-info
+            - generic [ref=e14]: 
+            - text: Model Info
+        - listitem [ref=e15]:
+          - link " About" [ref=e16] [cursor=pointer]:
+            - /url: /about
+            - generic [ref=e17]: 
+            - text: About
+  - main [ref=e18]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - heading "7-Day Disease Risk Forecast" [level=1] [ref=e22]
+        - paragraph [ref=e23]: Live weather forecast for Ranchi (23.34°N, 85.31°E) from public-domain sources (Open-Meteo / NASA POWER), with ML-based Virosis & Bacteriosis risk for each day
+        - button " Refresh Forecast" [ref=e24] [cursor=pointer]:
+          - generic [ref=e25]: 
+          - text: Refresh Forecast
+      - generic [ref=e26]:
+        - generic [ref=e28]:
+          - generic [ref=e29]: 
+          - text: Low disease risk expected over the next 7 days.
+        - heading " Disease Risk Trend" [level=5] [ref=e32]:
+          - generic [ref=e33]: 
+          - text: Disease Risk Trend
+        - heading " Daily Breakdown" [level=5] [ref=e35]:
+          - generic [ref=e36]: 
+          - text: Daily Breakdown
+        - generic [ref=e37]:
+          - generic [ref=e40]:
+            - generic [ref=e41]:
+              - generic [ref=e42]: Tue, 22 Sept
+              - text: 2026-09-22
+            - generic [ref=e43]:
+              - generic [ref=e44]: 
+              - text: 28.7°C /
+              - generic [ref=e45]: 
+              - text: 22.5°C
+              - generic [ref=e46]: 
+              - text: 88% RH
+              - generic [ref=e47]: 
+              - text: 14.5 m/s
+            - generic [ref=e48]:
+              - generic [ref=e49]: 
+              - text: 5.0 mm
+              - generic [ref=e50]: THI 76.8
+            - generic [ref=e51]:
+              - generic [ref=e52]: "Bacteriosis: 16.07%"
+              - generic [ref=e53]: "Virosis: 28.95%"
+          - generic [ref=e56]:
+            - generic [ref=e57]:
+              - generic [ref=e58]: Wed, 23 Sept
+              - text: 2026-09-23
+            - generic [ref=e59]:
+              - generic [ref=e60]: 
+              - text: 24.5°C /
+              - generic [ref=e61]: 
+              - text: 22.1°C
+              - generic [ref=e62]: 
+              - text: 96% RH
+              - generic [ref=e63]: 
+              - text: 21.2 m/s
+            - generic [ref=e64]:
+              - generic [ref=e65]: 
+              - text: 27.8 mm
+              - generic [ref=e66]: THI 73.6
+            - generic [ref=e67]:
+              - generic [ref=e68]: "Bacteriosis: 29.19%"
+              - generic [ref=e69]: "Virosis: 24%"
+          - generic [ref=e72]:
+            - generic [ref=e73]:
+              - generic [ref=e74]: Thu, 24 Sept
+              - text: 2026-09-24
+            - generic [ref=e75]:
+              - generic [ref=e76]: 
+              - text: 24.0°C /
+              - generic [ref=e77]: 
+              - text: 22.0°C
+              - generic [ref=e78]: 
+              - text: 98% RH
+              - generic [ref=e79]: 
+              - text: 23.3 m/s
+            - generic [ref=e80]:
+              - generic [ref=e81]: 
+              - text: 17.6 mm
+              - generic [ref=e82]: THI 73.2
+            - generic [ref=e83]:
+              - generic [ref=e84]: "Bacteriosis: 32.82%"
+              - generic [ref=e85]: "Virosis: 23.7%"
+          - generic [ref=e88]:
+            - generic [ref=e89]:
+              - generic [ref=e90]: Fri, 25 Sept
+              - text: 2026-09-25
+            - generic [ref=e91]:
+              - generic [ref=e92]: 
+              - text: 25.2°C /
+              - generic [ref=e93]: 
+              - text: 21.7°C
+              - generic [ref=e94]: 
+              - text: 98% RH
+              - generic [ref=e95]: 
+              - text: 26.6 m/s
+            - generic [ref=e96]:
+              - generic [ref=e97]: 
+              - text: 21.6 mm
+              - generic [ref=e98]: THI 74.0
+            - generic [ref=e99]:
+              - generic [ref=e100]: "Bacteriosis: 38.05%"
+              - generic [ref=e101]: "Virosis: 26.87%"
+          - generic [ref=e104]:
+            - generic [ref=e105]:
+              - generic [ref=e106]: Sat, 26 Sept
+              - text: 2026-09-26
+            - generic [ref=e107]:
+              - generic [ref=e108]: 
+              - text: 24.5°C /
+              - generic [ref=e109]: 
+              - text: 21.4°C
+              - generic [ref=e110]: 
+              - text: 97% RH
+              - generic [ref=e111]: 
+              - text: 24.7 m/s
+            - generic [ref=e112]:
+              - generic [ref=e113]: 
+              - text: 51.1 mm
+              - generic [ref=e114]: THI 73.1
+            - generic [ref=e115]:
+              - generic [ref=e116]: "Bacteriosis: 36.62%"
+              - generic [ref=e117]: "Virosis: 23.75%"
+          - generic [ref=e120]:
+            - generic [ref=e121]:
+              - generic [ref=e122]: Sun, 27 Sept
+              - text: 2026-09-27
+            - generic [ref=e123]:
+              - generic [ref=e124]: 
+              - text: 27.7°C /
+              - generic [ref=e125]: 
+              - text: 21.4°C
+              - generic [ref=e126]: 
+              - text: 86% RH
+              - generic [ref=e127]: 
+              - text: 12.2 m/s
+            - generic [ref=e128]:
+              - generic [ref=e129]: 
+              - text: 3.3 mm
+              - generic [ref=e130]: THI 74.8
+            - generic [ref=e131]:
+              - generic [ref=e132]: "Bacteriosis: 32.47%"
+              - generic [ref=e133]: "Virosis: 36.77%"
+          - generic [ref=e136]:
+            - generic [ref=e137]:
+              - generic [ref=e138]: Mon, 28 Sept
+              - text: 2026-09-28
+            - generic [ref=e139]:
+              - generic [ref=e140]: 
+              - text: 28.5°C /
+              - generic [ref=e141]: 
+              - text: 20.3°C
+              - generic [ref=e142]: 
+              - text: 81% RH
+              - generic [ref=e143]: 
+              - text: 7.5 m/s
+            - generic [ref=e144]:
+              - generic [ref=e145]: 
+              - text: 0.6 mm
+              - generic [ref=e146]: THI 74.0
+            - generic [ref=e147]:
+              - generic [ref=e148]: "Bacteriosis: 36.14%"
+              - generic [ref=e149]: "Virosis: 36.32%"
+        - paragraph [ref=e150]:
+          - generic [ref=e151]: 
+          - text: "Weather source: Open-Meteo Forecast · THI computed internally (NRC 1971) · Predictions use weather-only features (Tmax, Tmin, Humidity, THI, Wind Speed)"
+  - contentinfo [ref=e152]:
+    - generic [ref=e153]:
+      - img "CSB-CTRTI Logo" [ref=e154]
+      - paragraph [ref=e155]:
+        - generic [ref=e156]: 
+        - text: Developed by CSB-Central Tasar Research and Training Institute - Ranchi, Jharkhand
+      - paragraph [ref=e157]: Using Machine Learning for Disease Prediction

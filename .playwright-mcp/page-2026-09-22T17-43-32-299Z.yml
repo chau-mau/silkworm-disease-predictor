@@ -1,0 +1,43 @@
+- generic [active] [ref=f2e1]:
+  - banner [ref=f2e2]:
+    - img "तसर रेशम कीट" [ref=f2e3]
+    - generic [ref=f2e4]:
+      - generic [ref=f2e5]: मदर मॉथ परीक्षण खेल
+      - generic [ref=f2e6]: CSB-केंद्रीय तसर अनुसंधान एवं प्रशिक्षण संस्थान, राँची
+  - generic [ref=f2e7]:
+    - generic [ref=f2e8]:
+      - heading "🦋 मदर मॉथ परीक्षण (Mother Moth Examination)" [level=1] [ref=f2e9]
+      - paragraph [ref=f2e10]: पेब्रिन रोग की जाँच सीखें — कदम दर कदम!
+      - generic [ref=f2e11]: "⭐ अंक: 10"
+    - generic [ref=f2e12]:
+      - generic [ref=f2e13]: 1. मॉथ चयन
+      - generic [ref=f2e14]: 2. औज़ार चयन
+      - generic [ref=f2e15]: 3. कटाई-पिसाई
+      - generic [ref=f2e16]: 4. स्लाइड तैयारी
+      - generic [ref=f2e17]: 5. माइक्रोस्कोप
+      - generic [ref=f2e18]: 6. निपटान
+    - generic [ref=f2e19]:
+      - generic [ref=f2e20]:
+        - text: 🎓
+        - strong [ref=f2e21]: चरण 1 — मदर मॉथ का चयन करें।
+        - text: पेब्रिन जाँच (Mother Moth Examination) में केवल
+        - strong [ref=f2e22]: मादा
+        - text: मॉथ की जाँच की जाती है। पहचानिए — कौन-सा मॉथ मादा है?
+      - generic [ref=f2e23]:
+        - generic [ref=f2e24] [cursor=pointer]:
+          - generic [ref=f2e41]: मॉथ A
+          - text: हल्का शरीर, मोटे पंखदार एंटीना
+        - generic [ref=f2e42] [cursor=pointer]:
+          - generic [ref=f2e58]: मॉथ B
+          - text: भारी शरीर, पतले एंटीना
+      - generic [ref=f2e61]:
+        - generic [ref=f2e62]:
+          - text: ☁️
+          - strong [ref=f2e63]: बिल्कुल सही! (+10)
+          - text: मॉथ B मादा है — भारी शरीर और पतले एंटीना मादा की पहचान हैं।
+          - strong [ref=f2e64]: मदर मॉथ परीक्षण में मादा की ही जाँच होती है
+          - text: ", क्योंकि मादा ही अंडे देती है और पेब्रिन रोग (Nosema bombycis) माँ से अंडों में चला जाता है (transovarial transmission)। नर मॉथ का शरीर हल्का और एंटीना मोटे-पंखदार होते हैं।"
+        - 'button "आगे: औज़ार चुनें →" [ref=f2e66] [cursor=pointer]'
+  - contentinfo [ref=f2e59]:
+    - img "CSB-CTRTI लोगो" [ref=f2e60]
+    - text: CSB-केंद्रीय तसर अनुसंधान एवं प्रशिक्षण संस्थान - राँची, झारखंड द्वारा विकसित रेशम कीट रोग अनुसंधान हेतु

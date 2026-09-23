@@ -1,0 +1,5 @@
+Level,Disease,Pearson_r,P_value,Spearman_rho,Spearman_p
+Plot,Pebrine,,,,
+Plot,Viriosis,0.25957754716953585,0.619378912092884,0.29032258064516125,0.5767513678627774
+Daily,Pebrine,,,,
+Daily,Viriosis,0.2049798243079686,0.3256481043225232,,
