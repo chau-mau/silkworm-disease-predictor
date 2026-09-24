@@ -1,6 +1,6 @@
 # Silkworm Disease Predictor
 
-[![Website](https://img.shields.io/badge/Website-Live-green)](https://silkworm-disease-predictor.github.io)
+[![Website](https://img.shields.io/badge/Website-Live-green)](https://chau-mau.github.io/silkworm-disease-predictor/)
 [![Python](https://img.shields.io/badge/Python-3.11-blue)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.3-lightgrey)](https://flask.palletsprojects.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
@@ -30,7 +30,9 @@ A machine learning web application to predict silkworm disease occurrence based 
 
 ## Live Demo
 
-**Website**: [https://silkworm-disease-predictor.github.io](https://silkworm-disease-predictor.github.io)
+**Disease Predictor**: [https://chau-mau.github.io/silkworm-disease-predictor/](https://chau-mau.github.io/silkworm-disease-predictor/)  
+**Disease Calendar**: [https://chau-mau.github.io/silkworm-disease-predictor/calendar.html](https://chau-mau.github.io/silkworm-disease-predictor/calendar.html)  
+**Mother Moth Tutorial**: [https://chau-mau.github.io/maada-shalabh-parikshan/](https://chau-mau.github.io/maada-shalabh-parikshan/)
 
 ## Research Background
 
@@ -46,7 +48,7 @@ A machine learning web application to predict silkworm disease occurrence based 
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/silkworm-disease-predictor.git
+git clone https://github.com/chau-mau/silkworm-disease-predictor.git
 cd silkworm-disease-predictor
 
 # Install dependencies
@@ -97,7 +99,10 @@ THI is computed automatically (NRC 1971 formula).
 │       ├── about.html
 │       └── model_info.html
 ├── docs/                    # Static website (GitHub Pages)
-│   └── index.html
+│   ├── index.html
+│   ├── calendar.html        # Ranchi disease calendar heatmap
+│   └── calendar_data.json   # Pre-computed historical risk data
+├── generate_calendar.py     # Build calendar_data.json from models
 ├── figures/                 # Analysis visualizations
 ├── results/                 # Analysis results
 ├── analysis_code.py         # Data analysis script

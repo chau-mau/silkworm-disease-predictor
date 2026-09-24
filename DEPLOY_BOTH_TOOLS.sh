@@ -4,7 +4,7 @@
 
 set -e
 
-GITHUB_USER="nidhisukhija"
+GITHUB_USER="chau-mau"
 DISEASE_REPO="silkworm-disease-predictor"
 MOTH_REPO="maada-shalabh-parikshan"
 
