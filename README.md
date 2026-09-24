@@ -141,7 +141,8 @@ Click the button above, or manually:
 2. New Web Service → Connect GitHub repo
 3. Build Command: `pip install -r app/requirements.txt`
 4. Start Command: `cd app && gunicorn app:app`
-5. Deploy!
+5. (Recommended) Add environment variable `OPEN_METEO_API_KEY` — sign up free at [open-meteo.com/en/pricing](https://open-meteo.com/en/pricing) to avoid public API rate limits.
+6. Deploy!
 
 ## Technologies Used
 

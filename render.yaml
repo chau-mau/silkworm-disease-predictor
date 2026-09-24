@@ -11,3 +11,6 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: "3.11.0"
+      # Optional: sign up free at https://open-meteo.com/en/pricing and paste key here.
+      # - key: OPEN_METEO_API_KEY
+      #   value: "YOUR_OPEN_METEO_API_KEY"
