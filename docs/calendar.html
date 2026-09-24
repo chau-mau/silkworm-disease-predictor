@@ -318,7 +318,7 @@
             const startOffset = firstDay.getDay();
             const daysInMonth = new Date(group.year, group.month + 1, 0).getDate();
 
-            let html = `<div class="calendar-month"><h4 class="month-title">${MONTH_NAMES[group.month]} ${group.year}</h4>`;
+            let html = `<div class="calendar-month"><h4 class="month-title">${MONTH_NAMES[group.month]}</h4>`;
             html += `<div class="calendar-grid">`;
             DAY_NAMES.forEach(dn => html += `<div class="day-header">${dn}</div>`);
             for (let i = 0; i < startOffset; i++) html += `<div class="day-cell empty"></div>`;
@@ -363,8 +363,9 @@
                     if (!rec) return;
                     const vr = rec.virosis;
                     const br = rec.bacteriosis;
+                    const dayLabel = new Date(date + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'long' });
                     tooltip.innerHTML = `
-                        <strong>${date}</strong><br>
+                        <strong>${dayLabel}</strong><br>
                         <span class="text-warning">${rec.tmax}°C / ${rec.tmin}°C</span> &nbsp;|&nbsp; RH ${rec.humidity}%<br>
                         THI ${rec.thi} &nbsp;|&nbsp; Wind ${rec.wind_speed} m/s<br>
                         <hr style="margin:6px 0;border-color:rgba(255,255,255,0.3)">
