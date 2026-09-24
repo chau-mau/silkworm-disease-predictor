@@ -29,41 +29,13 @@
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
-        .stat-card {
-            text-align: center;
-            padding: 20px;
-        }
-        .stat-number {
-            font-size: 2.2rem;
-            font-weight: 700;
-        }
-        .stat-label {
-            color: #6c757d;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .calendar-month {
-            margin-bottom: 30px;
-        }
-        .month-title {
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 12px;
-            text-align: center;
-        }
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 6px;
-        }
-        .day-header {
-            text-align: center;
-            font-weight: 700;
-            font-size: 0.8rem;
-            color: #6c757d;
-            padding: 6px 0;
-        }
+        .stat-card { text-align: center; padding: 20px; }
+        .stat-number { font-size: 2.2rem; font-weight: 700; }
+        .stat-label { color: #6c757d; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .calendar-month { margin-bottom: 30px; }
+        .month-title { font-weight: 700; color: var(--primary-color); margin-bottom: 12px; text-align: center; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+        .day-header { text-align: center; font-weight: 700; font-size: 0.8rem; color: #6c757d; padding: 6px 0; }
         .day-cell {
             aspect-ratio: 1;
             border-radius: 8px;
@@ -79,38 +51,12 @@
             position: relative;
             border: 2px solid transparent;
         }
-        .day-cell:hover {
-            transform: scale(1.08);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 10;
-        }
-        .day-cell.empty {
-            background: transparent !important;
-            cursor: default;
-            pointer-events: none;
-        }
-        .day-cell .day-num {
-            font-size: 0.9rem;
-            line-height: 1;
-        }
-        .day-cell .day-risk {
-            font-size: 0.55rem;
-            margin-top: 2px;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-        .day-cell.high-risk {
-            border-color: #dc3545;
-            box-shadow: 0 0 0 1px rgba(220,53,69,0.3);
-        }
-        .legend-box {
-            width: 22px;
-            height: 22px;
-            border-radius: 6px;
-            display: inline-block;
-            vertical-align: middle;
-            margin-right: 6px;
-        }
+        .day-cell:hover { transform: scale(1.12); box-shadow: 0 6px 16px rgba(0,0,0,0.25); z-index: 10; }
+        .day-cell.empty { background: transparent !important; cursor: default; pointer-events: none; }
+        .day-cell .day-num { font-size: 0.9rem; line-height: 1; }
+        .day-cell .day-risk { font-size: 0.55rem; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.3px; }
+        .day-cell.high-risk { border-color: #dc3545; box-shadow: 0 0 0 1px rgba(220,53,69,0.3); }
+        .legend-box { width: 22px; height: 22px; border-radius: 6px; display: inline-block; vertical-align: middle; margin-right: 6px; }
         .tooltip-custom {
             position: absolute;
             background: rgba(33, 37, 41, 0.95);
@@ -124,22 +70,11 @@
             box-shadow: 0 8px 24px rgba(0,0,0,0.25);
             display: none;
         }
-        .btn-view {
-            border-radius: 25px;
-            padding: 8px 22px;
-            font-weight: 600;
-        }
-        .btn-view.active {
-            background: var(--secondary-color);
-            color: #fff;
-            border-color: var(--secondary-color);
-        }
-        .footer {
-            background: var(--primary-color);
-            color: white;
-            padding: 30px 0;
-            margin-top: 50px;
-        }
+        .btn-view { border-radius: 25px; padding: 8px 22px; font-weight: 600; }
+        .btn-view.active { background: var(--secondary-color); color: #fff; border-color: var(--secondary-color); }
+        .footer { background: var(--primary-color); color: white; padding: 30px 0; margin-top: 50px; }
+        .risk-pill { display: inline-block; padding: 6px 14px; border-radius: 20px; font-weight: 700; color: #fff; }
+        .calc-result { display: none; }
         @media (max-width: 576px) {
             .day-cell { font-size: 0.7rem; }
             .day-cell .day-num { font-size: 0.75rem; }
@@ -168,35 +103,15 @@
     <main class="container my-5">
         <div class="text-center mb-4">
             <h1 class="display-6 fw-bold text-primary"><i class="fas fa-calendar-alt me-2"></i>Tasar Silkworm Disease Calendar (Ranchi)</h1>
-            <p class="lead text-muted">Round-the-year climate-based risk for Virosis &amp; Bacteriosis, averaged from 5 years of NASA POWER weather data</p>
+            <p class="lead text-muted">Round-the-year interactive climate-based risk for Virosis &amp; Bacteriosis</p>
         </div>
 
         <!-- Summary -->
         <div class="row mb-4" id="summaryRow">
-            <div class="col-md-3 col-6">
-                <div class="card stat-card">
-                    <div class="stat-number text-primary" id="totalDays">-</div>
-                    <div class="stat-label">Days Analysed</div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="card stat-card">
-                    <div class="stat-number text-danger" id="highDays">-</div>
-                    <div class="stat-label">High / Very High Risk Days</div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="card stat-card">
-                    <div class="stat-number text-warning" id="moderateDays">-</div>
-                    <div class="stat-label">Moderate Risk Days</div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="card stat-card">
-                    <div class="stat-number text-success" id="lowDays">-</div>
-                    <div class="stat-label">Low Risk Days</div>
-                </div>
-            </div>
+            <div class="col-md-3 col-6"><div class="card stat-card"><div class="stat-number text-primary" id="totalDays">-</div><div class="stat-label">Days Analysed</div></div></div>
+            <div class="col-md-3 col-6"><div class="card stat-card"><div class="stat-number text-danger" id="highDays">-</div><div class="stat-label">High / Very High Risk Days</div></div></div>
+            <div class="col-md-3 col-6"><div class="card stat-card"><div class="stat-number text-warning" id="moderateDays">-</div><div class="stat-label">Moderate Risk Days</div></div></div>
+            <div class="col-md-3 col-6"><div class="card stat-card"><div class="stat-number text-success" id="lowDays">-</div><div class="stat-label">Low Risk Days</div></div></div>
         </div>
 
         <!-- Controls -->
@@ -212,7 +127,62 @@
                     <span><span class="legend-box" style="background:#ffc107"></span>Moderate</span>
                     <span><span class="legend-box" style="background:#fd7e14"></span>High</span>
                     <span><span class="legend-box" style="background:#dc3545"></span>Very High</span>
-                    <span class="ms-2 text-muted"><i class="fas fa-border-all me-1 text-danger"></i>Red border = High/Very High day</span>
+                    <span class="ms-2 text-muted"><i class="fas fa-mouse-pointer me-1 text-primary"></i>Click any day for details</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Custom Risk Calculator -->
+        <div class="card mb-4">
+            <div class="card-body p-4">
+                <h4 class="card-title mb-3"><i class="fas fa-sliders-h me-2 text-primary"></i>Custom Day Risk Calculator</h4>
+                <p class="text-muted mb-3">Enter any weather values to see approximate Virosis &amp; Bacteriosis risk.</p>
+                <div class="row">
+                    <div class="col-md-3 col-6 mb-3">
+                        <label class="form-label">Tmax (°C)</label>
+                        <input type="number" class="form-control" id="calcTmax" value="30" step="0.1">
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <label class="form-label">Tmin (°C)</label>
+                        <input type="number" class="form-control" id="calcTmin" value="22" step="0.1">
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <label class="form-label">Humidity (%)</label>
+                        <input type="number" class="form-control" id="calcHumidity" value="75" step="1">
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <label class="form-label">Wind (m/s)</label>
+                        <input type="number" class="form-control" id="calcWind" value="1.5" step="0.1">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary" onclick="calculateCustomRisk()">
+                        <i class="fas fa-calculator me-2"></i>Calculate Risk
+                    </button>
+                </div>
+                <div id="calcResult" class="calc-result mt-4">
+                    <hr>
+                    <div class="row align-items-center">
+                        <div class="col-md-6 mb-3">
+                            <h6>THI (NRC 1971): <span id="calcThi" class="fw-bold text-primary">-</span></h6>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span>Virosis</span>
+                                <span id="calcVirosisBadge" class="risk-pill">-</span>
+                            </div>
+                            <div class="progress mb-3"><div id="calcVirosisBar" class="progress-bar" role="progressbar" style="width:0%"></div></div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span>Bacteriosis</span>
+                                <span id="calcBacteriosisBadge" class="risk-pill">-</span>
+                            </div>
+                            <div class="progress"><div id="calcBacteriosisBar" class="progress-bar" role="progressbar" style="width:0%"></div></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="alert alert-light border">
+                                <h6><i class="fas fa-lightbulb me-2 text-warning"></i>Suggestions</h6>
+                                <ul id="calcRecommendations" class="mb-0 small"></ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -246,22 +216,36 @@
         </div>
     </footer>
 
+    <!-- Day Detail Modal -->
+    <div class="modal fade" id="dayModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dayModalTitle">Day Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="dayModalBody">
+                    <!-- Filled by JS -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="tooltip-custom" id="tooltip"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const RISK_COLORS = {
-            'Low': '#28a745',
-            'Moderate': '#ffc107',
-            'High': '#fd7e14',
-            'Very High': '#dc3545'
-        };
+        const RISK_COLORS = { 'Low': '#28a745', 'Moderate': '#ffc107', 'High': '#fd7e14', 'Very High': '#dc3545' };
         const RISK_ORDER = {'Low': 0, 'Moderate': 1, 'High': 2, 'Very High': 3};
         const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
         const DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
         let calendarData = null;
         let currentView = 'combined';
+        const dayModal = new bootstrap.Modal(document.getElementById('dayModal'));
 
         async function loadData() {
             const res = await fetch('calendar_data.json');
@@ -276,7 +260,6 @@
         function getRisk(record, view) {
             if (view === 'virosis') return record.virosis.risk;
             if (view === 'bacteriosis') return record.bacteriosis.risk;
-            // combined: worst of the two
             return record.combined_risk;
         }
 
@@ -333,7 +316,6 @@
                     continue;
                 }
                 const risk = getRisk(rec, currentView);
-                const prob = getProbability(rec, currentView);
                 const color = RISK_COLORS[risk];
                 const highClass = (risk === 'High' || risk === 'Very High') ? 'high-risk' : '';
                 const textColor = (risk === 'Moderate') ? 'color:#333;' : 'color:#fff;';
@@ -346,15 +328,55 @@
             return html;
         }
 
+        function openDayModal(date) {
+            const rec = calendarData.records.find(r => r.date === date);
+            if (!rec) return;
+            const dayLabel = new Date(date + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'long' });
+            document.getElementById('dayModalTitle').textContent = dayLabel;
+            document.getElementById('dayModalBody').innerHTML = `
+                <div class="row text-center mb-3">
+                    <div class="col-6"><h6>Temperature</h6><p class="fw-bold">${rec.tmax}°C / ${rec.tmin}°C</p></div>
+                    <div class="col-6"><h6>Humidity</h6><p class="fw-bold">${rec.humidity}%</p></div>
+                    <div class="col-6"><h6>THI</h6><p class="fw-bold">${rec.thi}</p></div>
+                    <div class="col-6"><h6>Wind Speed</h6><p class="fw-bold">${rec.wind_speed} m/s</p></div>
+                </div>
+                <hr>
+                <div class="row text-center">
+                    <div class="col-6">
+                        <h6>Virosis</h6>
+                        <span class="risk-pill" style="background:${RISK_COLORS[rec.virosis.risk]}">${rec.virosis.risk}</span>
+                        <p class="mt-2 fw-bold">${(rec.virosis.probability*100).toFixed(1)}%</p>
+                    </div>
+                    <div class="col-6">
+                        <h6>Bacteriosis</h6>
+                        <span class="risk-pill" style="background:${RISK_COLORS[rec.bacteriosis.risk]}">${rec.bacteriosis.risk}</span>
+                        <p class="mt-2 fw-bold">${(rec.bacteriosis.probability*100).toFixed(1)}%</p>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <h6><i class="fas fa-lightbulb me-2 text-warning"></i>Guidance</h6>
+                    <ul class="small mb-0">
+                        ${rec.virosis.risk === 'High' || rec.virosis.risk === 'Very High' ? '<li>High Virosis risk — ensure sanitation and avoid crowding.</li>' : ''}
+                        ${rec.bacteriosis.risk === 'High' || rec.bacteriosis.risk === 'Very High' ? '<li>High Bacteriosis risk — maintain hygiene and control humidity.</li>' : ''}
+                        ${rec.humidity > 85 ? '<li>High humidity — improve ventilation.</li>' : ''}
+                        ${rec.thi > 34 ? '<li>High THI — provide cooling/shade.</li>' : ''}
+                        ${(rec.virosis.risk !== 'High' && rec.virosis.risk !== 'Very High' && rec.bacteriosis.risk !== 'High' && rec.bacteriosis.risk !== 'Very High') ? '<li>Climate risk is relatively low — continue normal management.</li>' : ''}
+                    </ul>
+                </div>
+                <p class="text-muted small mt-3 mb-0">Averaged from ${rec.years_sampled} years of historical NASA POWER data.</p>
+            `;
+            dayModal.show();
+        }
+
         function render() {
             renderSummary();
             const container = document.getElementById('calendarContainer');
             const groups = groupByMonth(calendarData.records);
             container.innerHTML = groups.map(g => `<div class="col-12">${renderCalendar(g)}</div>`).join('');
-            attachTooltips();
+            attachInteractions();
         }
 
-        function attachTooltips() {
+        function attachInteractions() {
             const tooltip = document.getElementById('tooltip');
             document.querySelectorAll('.day-cell[data-date]').forEach(cell => {
                 cell.addEventListener('mouseenter', e => {
@@ -371,7 +393,7 @@
                         <hr style="margin:6px 0;border-color:rgba(255,255,255,0.3)">
                         Virosis: <strong>${vr.risk}</strong> (${(vr.probability*100).toFixed(1)}%)<br>
                         Bacteriosis: <strong>${br.risk}</strong> (${(br.probability*100).toFixed(1)}%)<br>
-                        <small>Avg. of ${rec.years_sampled} years</small>
+                        <small>Click for full details</small>
                     `;
                     tooltip.style.display = 'block';
                 });
@@ -382,7 +404,73 @@
                 cell.addEventListener('mouseleave', () => {
                     tooltip.style.display = 'none';
                 });
+                cell.addEventListener('click', () => openDayModal(cell.dataset.date));
             });
+        }
+
+        function thiNrc(tmax, tmin, rh) {
+            const tMean = (tmax + tmin) / 2;
+            const tF = 1.8 * tMean + 32;
+            return tF - ((0.55 - 0.0055 * rh) * (tF - 58));
+        }
+
+        function riskFromProbability(prob) {
+            if (prob < 0.2) return 'Low';
+            if (prob < 0.4) return 'Moderate';
+            if (prob < 0.6) return 'High';
+            return 'Very High';
+        }
+
+        function calculateDiseaseRisk(tmax, tmin, humidity, thi, windSpeed, base, humidFactor) {
+            let prob = base;
+            if (tmax > 30) prob += 0.06;
+            if (tmax > 33) prob += 0.06;
+            if (tmin > 24) prob += 0.04;
+            if (humidity > 80) prob += humidFactor;
+            if (humidity > 90) prob += humidFactor;
+            if (thi > 33) prob += 0.05;
+            if (thi > 35) prob += 0.05;
+            if (windSpeed < 1.0) prob += 0.03;
+            prob = Math.max(0, Math.min(1, prob));
+            return { probability: prob, risk: riskFromProbability(prob) };
+        }
+
+        function calculateCustomRisk() {
+            const tmax = parseFloat(document.getElementById('calcTmax').value);
+            const tmin = parseFloat(document.getElementById('calcTmin').value);
+            const humidity = parseFloat(document.getElementById('calcHumidity').value);
+            const wind = parseFloat(document.getElementById('calcWind').value);
+            const thi = thiNrc(tmax, tmin, humidity);
+
+            const virosis = calculateDiseaseRisk(tmax, tmin, humidity, thi, wind, 0.18, 0.06);
+            const bacteriosis = calculateDiseaseRisk(tmax, tmin, humidity, thi, wind, 0.16, 0.05);
+
+            document.getElementById('calcThi').textContent = thi.toFixed(1);
+
+            function setResult(disease, result) {
+                document.getElementById(`calc${disease}Badge`).textContent = `${result.risk} (${(result.probability*100).toFixed(1)}%)`;
+                document.getElementById(`calc${disease}Badge`).style.background = RISK_COLORS[result.risk];
+                document.getElementById(`calc${disease}Badge`).style.color = result.risk === 'Moderate' ? '#333' : '#fff';
+                const bar = document.getElementById(`calc${disease}Bar`);
+                bar.style.width = `${(result.probability*100).toFixed(1)}%`;
+                bar.style.backgroundColor = RISK_COLORS[result.risk];
+                bar.textContent = `${(result.probability*100).toFixed(1)}%`;
+                bar.style.color = result.risk === 'Moderate' ? '#333' : '#fff';
+            }
+
+            setResult('Virosis', virosis);
+            setResult('Bacteriosis', bacteriosis);
+
+            const recs = [];
+            if (virosis.risk === 'High' || virosis.risk === 'Very High') recs.push('High Virosis risk — ensure sanitation and avoid crowding.');
+            if (bacteriosis.risk === 'High' || bacteriosis.risk === 'Very High') recs.push('High Bacteriosis risk — maintain hygiene and control humidity.');
+            if (humidity > 85) recs.push('High humidity — improve ventilation.');
+            if (thi > 34) recs.push('High THI — provide cooling/shade.');
+            if (recs.length === 0) recs.push('Climate risk is relatively low — continue normal management.');
+            document.getElementById('calcRecommendations').innerHTML = recs.map(r => `<li>${r}</li>`).join('');
+
+            document.getElementById('calcResult').style.display = 'block';
+            document.getElementById('calcResult').scrollIntoView({ behavior: 'smooth' });
         }
 
         document.querySelectorAll('.btn-view').forEach(btn => {
