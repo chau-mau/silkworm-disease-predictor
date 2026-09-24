@@ -24,6 +24,11 @@ DEFAULT_LON = 85.3096
 
 CACHE_TTL_SECONDS = 30 * 60  # 30 minutes
 
+# Open-Meteo asks API consumers to identify themselves; this helps avoid blocks.
+_REQUEST_HEADERS = {
+    "User-Agent": "TasarSilkwormDiseasePredictor/1.0 (research; contact: nidhisukhija5@gmail.com)"
+}
+
 _cache = {"key": None, "timestamp": 0, "data": None}
 
 
@@ -47,9 +52,12 @@ def _fetch_open_meteo(lat, lon, days):
         "timezone": "Asia/Kolkata",
         "forecast_days": days,
     }
-    r = requests.get(url, params=params, timeout=30)
+    r = requests.get(url, params=params, headers=_REQUEST_HEADERS, timeout=30)
     r.raise_for_status()
-    d = r.json()["daily"]
+    payload = r.json()
+    d = payload.get("daily") or {}
+    if not d.get("time"):
+        raise ValueError(f"Open-Meteo returned empty daily data: {payload.keys()}")
     return [
         {
             "date": d["time"][i],
@@ -79,9 +87,12 @@ def _fetch_nasa_power(lat, lon, days):
         "end": end.strftime("%Y%m%d"),
         "format": "JSON",
     }
-    r = requests.get(url, params=params, timeout=30)
+    r = requests.get(url, params=params, headers=_REQUEST_HEADERS, timeout=30)
     r.raise_for_status()
-    p = r.json()["properties"]["parameter"]
+    payload = r.json()
+    p = payload.get("properties", {}).get("parameter", {})
+    if not p or "T2M_MAX" not in p:
+        raise ValueError(f"NASA POWER returned unexpected structure: {payload.keys()}")
     out = []
     for k in sorted(p["T2M_MAX"]):
         if p["T2M_MAX"][k] == -999:
@@ -110,6 +121,8 @@ def get_forecast(lat=DEFAULT_LAT, lon=DEFAULT_LON, days=7):
     for fetcher in (_fetch_open_meteo, _fetch_nasa_power):
         try:
             data = fetcher(lat, lon, days)
+            if not data:
+                raise ValueError(f"{fetcher.__name__} returned empty forecast")
             for row in data:
                 row["thi"] = thi_nrc(row["tmax"], row["tmin"], row["humidity"])
             result = {"success": True, "location": {"lat": lat, "lon": lon}, "daily": data}
