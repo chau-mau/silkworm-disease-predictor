@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disease Calendar | Silkworm Disease Predictor - Ranchi</title>
+    <title>Tasar Silkworm Disease Calendar (Ranchi)</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -150,7 +150,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <i class="fas fa-bug me-2"></i>Silkworm Disease Predictor
+                <i class="fas fa-bug me-2"></i>Tasar Silkworm Disease Predictor
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <span class="navbar-toggler-icon"></span>
@@ -167,8 +167,8 @@
 
     <main class="container my-5">
         <div class="text-center mb-4">
-            <h1 class="display-6 fw-bold text-primary"><i class="fas fa-calendar-alt me-2"></i>Ranchi Disease Calendar</h1>
-            <p class="lead text-muted">Historical Virosis & Bacteriosis risk heatmap from temperature and humidity records</p>
+            <h1 class="display-6 fw-bold text-primary"><i class="fas fa-calendar-alt me-2"></i>Tasar Silkworm Disease Calendar (Ranchi)</h1>
+            <p class="lead text-muted">Round-the-year climate-based risk for Virosis &amp; Bacteriosis, averaged from 5 years of NASA POWER weather data</p>
         </div>
 
         <!-- Summary -->
@@ -220,11 +220,19 @@
         <!-- Calendars -->
         <div id="calendarContainer"></div>
 
+        <!-- Disclaimer -->
+        <div class="card mt-4 border-warning">
+            <div class="card-body bg-warning bg-opacity-10">
+                <h5 class="card-title"><i class="fas fa-exclamation-triangle me-2 text-warning"></i>Terms &amp; Conditions</h5>
+                <p class="mb-0" id="disclaimerText">Disease incidence is subject to rearing season, crop stage, and management practices. This calendar indicates climate-based risk only and should be used as a decision-support tool, not a definitive forecast.</p>
+            </div>
+        </div>
+
         <!-- Note -->
         <div class="card mt-4">
             <div class="card-body">
                 <h5 class="card-title"><i class="fas fa-info-circle me-2 text-primary"></i>About this calendar</h5>
-                <p class="mb-1">Each cell is one day. The colour shows the predicted risk level from the weather-only Random Forest + Logistic Regression ensemble trained on 2025–2026 field data at CTRTI Ranchi.</p>
+                <p class="mb-1">Each cell is one day of a typical year. The colour shows the predicted risk level from the weather-only Random Forest + Logistic Regression ensemble trained on 2025–2026 field data at CTRTI Ranchi.</p>
                 <p class="mb-1"><strong>Inputs:</strong> daily maximum temperature, minimum temperature, relative humidity, and wind speed.</p>
                 <p class="mb-0 text-muted" id="dataNote"></p>
             </div>
@@ -259,6 +267,9 @@
             const res = await fetch('calendar_data.json');
             calendarData = await res.json();
             document.getElementById('dataNote').textContent = calendarData.summary.note || '';
+            if (calendarData.summary.disclaimer) {
+                document.getElementById('disclaimerText').textContent = calendarData.summary.disclaimer;
+            }
             render();
         }
 
@@ -357,8 +368,9 @@
                         <span class="text-warning">${rec.tmax}°C / ${rec.tmin}°C</span> &nbsp;|&nbsp; RH ${rec.humidity}%<br>
                         THI ${rec.thi} &nbsp;|&nbsp; Wind ${rec.wind_speed} m/s<br>
                         <hr style="margin:6px 0;border-color:rgba(255,255,255,0.3)">
-                        Virosis: <strong>${vr.risk}</strong> (${(vr.probability*100).toFixed(1)}%) ${vr.observed ? '✓ observed' : ''}<br>
-                        Bacteriosis: <strong>${br.risk}</strong> (${(br.probability*100).toFixed(1)}%) ${br.observed ? '✓ observed' : ''}
+                        Virosis: <strong>${vr.risk}</strong> (${(vr.probability*100).toFixed(1)}%)<br>
+                        Bacteriosis: <strong>${br.risk}</strong> (${(br.probability*100).toFixed(1)}%)<br>
+                        <small>Avg. of ${rec.years_sampled} years</small>
                     `;
                     tooltip.style.display = 'block';
                 });

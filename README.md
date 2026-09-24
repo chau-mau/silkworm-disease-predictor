@@ -1,4 +1,4 @@
-# Silkworm Disease Predictor
+# Tasar Silkworm Disease Predictor
 
 [![Website](https://img.shields.io/badge/Website-Live-green)](https://chau-mau.github.io/silkworm-disease-predictor/)
 [![Python](https://img.shields.io/badge/Python-3.11-blue)](https://www.python.org/)
@@ -30,7 +30,8 @@ A machine learning web application to predict silkworm disease occurrence based 
 
 ## Live Demo
 
-**Disease Predictor**: [https://chau-mau.github.io/silkworm-disease-predictor/](https://chau-mau.github.io/silkworm-disease-predictor/)  
+**Static landing + calendar (GitHub Pages)**: [https://chau-mau.github.io/silkworm-disease-predictor/](https://chau-mau.github.io/silkworm-disease-predictor/)  
+**Live 7-day forecast (Render)**: [https://tasar-silkworm-disease-predictor.onrender.com](https://tasar-silkworm-disease-predictor.onrender.com)  
 **Disease Calendar**: [https://chau-mau.github.io/silkworm-disease-predictor/calendar.html](https://chau-mau.github.io/silkworm-disease-predictor/calendar.html)  
 **Mother Moth Tutorial**: [https://chau-mau.github.io/maada-shalabh-parikshan/](https://chau-mau.github.io/maada-shalabh-parikshan/)
 
@@ -103,6 +104,7 @@ THI is computed automatically (NRC 1971 formula).
 │   ├── calendar.html        # Ranchi disease calendar heatmap
 │   └── calendar_data.json   # Pre-computed historical risk data
 ├── generate_calendar.py     # Build calendar_data.json from models
+├── render.yaml              # Render deployment blueprint
 ├── figures/                 # Analysis visualizations
 ├── results/                 # Analysis results
 ├── analysis_code.py         # Data analysis script
@@ -131,6 +133,10 @@ See `results/` folder for detailed outputs.
 4. Site will be live at `https://USERNAME.github.io/silkworm-disease-predictor`
 
 ### Render (Full Flask App)
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/chau-mau/silkworm-disease-predictor)
+
+Click the button above, or manually:
 1. Create account at [render.com](https://render.com)
 2. New Web Service → Connect GitHub repo
 3. Build Command: `pip install -r app/requirements.txt`
