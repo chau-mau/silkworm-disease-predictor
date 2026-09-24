@@ -22,12 +22,15 @@ import requests
 DEFAULT_LAT = 23.3441
 DEFAULT_LON = 85.3096
 
-CACHE_TTL_SECONDS = 30 * 60  # 30 minutes
+CACHE_TTL_SECONDS = 60 * 60  # 60 minutes
 
 # Open-Meteo asks API consumers to identify themselves; this helps avoid blocks.
 _REQUEST_HEADERS = {
     "User-Agent": "TasarSilkwormDiseasePredictor/1.0 (research; contact: nidhisukhija5@gmail.com)"
 }
+
+# Optional: set OPEN_METEO_API_KEY env var to use the higher-limit customer endpoint.
+OPEN_METEO_API_KEY = __import__("os").environ.get("OPEN_METEO_API_KEY", "")
 
 _cache = {"key": None, "timestamp": 0, "data": None}
 
@@ -43,15 +46,20 @@ def thi_nrc(tmax, tmin, rh):
 
 
 def _fetch_open_meteo(lat, lon, days):
-    url = "https://api.open-meteo.com/v1/forecast"
-    params = {
+    if OPEN_METEO_API_KEY:
+        url = "https://customer-api.open-meteo.com/v1/forecast"
+        params = {"apikey": OPEN_METEO_API_KEY}
+    else:
+        url = "https://api.open-meteo.com/v1/forecast"
+        params = {}
+    params.update({
         "latitude": lat,
         "longitude": lon,
         "daily": ("temperature_2m_max,temperature_2m_min,"
                   "relative_humidity_2m_mean,wind_speed_10m_mean,precipitation_sum"),
         "timezone": "Asia/Kolkata",
         "forecast_days": days,
-    }
+    })
     r = requests.get(url, params=params, headers=_REQUEST_HEADERS, timeout=30)
     r.raise_for_status()
     payload = r.json()
