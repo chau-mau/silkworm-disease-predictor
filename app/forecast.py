@@ -15,7 +15,12 @@ entry in the fallback chain.
 Responses are cached in memory for 30 minutes to avoid hammering the APIs.
 """
 
+import json
+import os
 import time
+from datetime import date, timedelta
+from pathlib import Path
+
 import requests
 
 # Ranchi, Jharkhand
@@ -30,9 +35,46 @@ _REQUEST_HEADERS = {
 }
 
 # Optional: set OPEN_METEO_API_KEY env var to use the higher-limit customer endpoint.
-OPEN_METEO_API_KEY = __import__("os").environ.get("OPEN_METEO_API_KEY", "")
+OPEN_METEO_API_KEY = os.environ.get("OPEN_METEO_API_KEY", "")
 
 _cache = {"key": None, "timestamp": 0, "data": None}
+
+
+def _load_historical_fallback():
+    """Load the typical-year Ranchi climate calendar as a last-resort fallback."""
+    try:
+        calendar_path = Path(__file__).resolve().parent.parent / "docs" / "calendar_data.json"
+        with open(calendar_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data.get("records", [])
+    except Exception:
+        return []
+
+
+def _historical_forecast(days, start_date=None):
+    """Return the next N days from the typical-year calendar (5-year average)."""
+    records = _load_historical_fallback()
+    if not records:
+        return None
+    by_doy = {r["date"][5:]: r for r in records}
+    start = start_date or date.today()
+    out = []
+    for i in range(days):
+        d = start + timedelta(days=i)
+        doy = d.strftime("%m-%d")
+        rec = by_doy.get(doy)
+        if rec:
+            out.append({
+                "date": d.isoformat(),
+                "tmax": rec["tmax"],
+                "tmin": rec["tmin"],
+                "humidity": rec["humidity"],
+                "wind_speed": rec["wind_speed"],
+                "rainfall": None,
+                "thi": rec["thi"],
+                "source": "5-year typical climate (NASA POWER 2021-2025)",
+            })
+    return out
 
 
 def thi_nrc(tmax, tmin, rh):
@@ -138,5 +180,17 @@ def get_forecast(lat=DEFAULT_LAT, lon=DEFAULT_LON, days=7):
             return result
         except Exception as e:
             errors.append(f"{fetcher.__name__}: {e}")
+
+    # Last resort: typical-year historical climate so the UI still shows useful data.
+    hist = _historical_forecast(days)
+    if hist:
+        result = {
+            "success": True,
+            "location": {"lat": lat, "lon": lon},
+            "daily": hist,
+            "warning": "Live weather APIs unavailable. Showing 5-year typical climate instead.",
+        }
+        _cache.update(key=key, timestamp=time.time(), data=result)
+        return result
 
     return {"success": False, "error": " | ".join(errors)}

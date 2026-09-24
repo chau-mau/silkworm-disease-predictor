@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}7-Day Forecast - Silkworm Disease Predictor{% endblock %}
+{% block title %}7-Day Forecast - Tasar Silkworm Disease Predictor{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -97,14 +97,20 @@ function displayForecast(data) {
     document.getElementById('fcResults').style.display = 'block';
     document.getElementById('fcSource').textContent = days[0].source;
 
+    // API fallback warning
+    const alertEl = document.getElementById('fcAlert');
+    if (data.warning) {
+        alertEl.innerHTML = `<div class="alert alert-info fade-in">
+            <i class="fas fa-info-circle me-2"></i>${data.warning}</div>`;
+    }
+
     // Alert for highest-risk day
     let worst = null, worstScore = -1;
     days.forEach(d => {
         const score = Math.max(...Object.values(d.predictions).map(p => p.probability));
         if (score > worstScore) { worstScore = score; worst = d; }
     });
-    const alertEl = document.getElementById('fcAlert');
-    if (worstScore >= 40) {
+    if (!data.warning && worstScore >= 40) {
         const diseases = Object.entries(worst.predictions)
             .filter(([, p]) => p.probability >= 40)
             .map(([k, p]) => `${k} (${p.probability}%)`).join(', ');
